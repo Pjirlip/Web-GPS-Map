@@ -29,17 +29,31 @@ router.get("/", function (request, responds)
 server.use("/", router);
 
 
-var test = server.listen(port, function ()
+let errorObject = server.listen(port, function ()
 {
     console.log("Server is listening on Port:" + port)
-
 
 });
 
 
-
-test.on('error', function (err)
+errorObject.on('error', function (err)
 {
-        console.log(err);
-        process.exit(1);
+    if (err.code === "EACCES")
+    {
+        if(port <= 1024)
+        {
+            console.log("You have no permission to start this port\n");
+        }
+        else
+        {
+            console.log("You tried to start the server on a busy port\n");
+        }
+
+        console.log("Used Port is:\t" + port);
+    }
+    else
+    {
+        console.log("Something went terrible wrong!")
+    }
+    process.exit(1);
 });
