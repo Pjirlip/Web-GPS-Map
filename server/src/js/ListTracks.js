@@ -7,8 +7,7 @@ module.exports = class ListTracks {
         this.tracklist = [];
         this.trackobjects = [];
         this.datafolder = '../../data';
-    }
-    readTrackList() {
+
         const fs = require('fs');
 
         let files = (fs.readdir(this.datafolder, (err, files) => {
@@ -22,11 +21,13 @@ module.exports = class ListTracks {
                 }
                 let id = file.split(".",1).toString();
                 let name =  JSON.parse(fs.readFileSync("" + this.datafolder +"/" + file)).features[0].properties.name;
+
                 var tmp = JSON.stringify({id, name});
                 // ;
+
                 this.tracklist.push(tmp);
+                this.trackobjects.push(JSON.parse(fs.readFileSync("" + this.datafolder +"/" + file)));
             });
         }));
-
     }
 }
