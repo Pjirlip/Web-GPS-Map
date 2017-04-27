@@ -29,7 +29,7 @@ router.get("/", function (request, responds)
 server.use("/", router);
 
 
-server.listen(port, function ()
+var test = server.listen(port, function ()
 {
     console.log("Server is listening on Port:" + port)
 
@@ -37,7 +37,8 @@ server.listen(port, function ()
 });
 
 
-process.on('uncaughtException', function (err)
+
+test.on('error', function (err)
 {
         console.log(err);
         process.exit(1);
