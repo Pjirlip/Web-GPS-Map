@@ -12,18 +12,15 @@ module.exports = class ListTracks {
 
         let files = (fs.readdir(this.datafolder, (err, files) => {
             let regex = new RegExp(".+\.json$");
-            if (!files) {
-                return;
-            }
+
             files.forEach(file => {
-                if (!file.match(regex)) {
-                    return
+                if (file.match(regex)) {
+                    let id = file.split(".",1).toString();
+
+                    this.trackobjects[id] = JSON.parse(fs.readFileSync(this.datafolder + "/" + file));
+
+                    this.tracklist[id] = this.trackobjects[id].features[0].properties.name;
                 }
-                let id = file.split(".",1).toString();
-                let name =  JSON.parse(fs.readFileSync("" + this.datafolder +"/" + file)).features[0].properties.name;
-                
-                this.tracklist[id] = name;
-                this.trackobjects[id] = JSON.parse(fs.readFileSync("" + this.datafolder +"/" + file));
             });
         }));
     }
