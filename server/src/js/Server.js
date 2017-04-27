@@ -36,6 +36,13 @@ router.get("/", function (request, responds)
     responds.sendFile("./server/src/index.html");
 });
 
+router.get("/tracs", function (request, respond)
+{
+    respond.send
+});
+
+
+
 /**
  * Bind router to server
  */
