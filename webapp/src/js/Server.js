@@ -1,14 +1,21 @@
 /**
- * Created by Philipp on 24.04.17.
+ * webGPSmap
+ * Webentwicklung Hausarbeit Gruppenarbeit Gruppe 1
+ *
+ * Webserver
+ *
+ * Created by Dominik Wirtz & Philipp Dippel
  */
 
 const express = require('express');
 const server = express();
 const port = getPortFromArguments();
-
 const router = express.Router();
 
-
+/**
+ * save Port from Commandline argument 1 to variable port
+ * @returns {Port from first Commandline argument or 8080 if argument is no valid port}
+ */
 function getPortFromArguments()
 {
 
@@ -21,39 +28,48 @@ function getPortFromArguments()
     return port;
 }
 
+/**
+ * add route for Homepage
+ */
 router.get("/", function (request, responds)
 {
     responds.sendfile("./src/index.html");
 });
 
+/**
+ * Bind router to server
+ */
 server.use("/", router);
 
-
+/**
+ * Start server on port
+ */
 let errorObject = server.listen(port, function ()
 {
-    console.log("Server is listening on Port:" + port)
+    console.log(`Webserver listening on port: ${startserver.address().port}`);
 
 });
 
 
+/**
+ * Errorhandling start server
+ */
 errorObject.on('error', function (err)
 {
     if (err.code === "EACCES")
     {
         if(port <= 1024)
         {
-            console.log("You have no permission to start this port\n");
+            console.log(`Error starting server with port: ${port}. permission needed to start server with port below 1024`);
         }
         else
         {
-            console.log("You tried to start the server on a busy port\n");
+            console.log(`Error starting server with port: ${port}. Port already in use`);
         }
-
-        console.log("Used Port is:\t" + port);
     }
     else
     {
-        console.log("Something went terrible wrong!")
+        console.log("Something went terrible wrong!");
     }
     process.exit(1);
 });
