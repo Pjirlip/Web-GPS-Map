@@ -17,9 +17,12 @@ module.exports = class ListTracks {
                 if (file.match(regex)) {
                     let id = file.split(".",1).toString();
 
-                    this.trackobjects[id] = JSON.parse(fs.readFileSync(this.datafolder + "/" + file));
+                    fs.readFile(this.datafolder + "/" + file, (err, data) => {
+                        this.trackobjects[id] = JSON.parse(data);
+                        this.tracklist[id] = this.trackobjects[id].features[0].properties.name;
+                    });
 
-                    this.tracklist[id] = this.trackobjects[id].features[0].properties.name;
+
                 }
             });
         }));
