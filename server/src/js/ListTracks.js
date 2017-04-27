@@ -3,10 +3,10 @@
  */
 
 module.exports = class ListTracks {
-    constructor(datafolder) {
+    constructor() {
         this.tracklist = [];
         this.trackobjects = [];
-        this.datafolder = '../../data';
+        this.datafolder = './server/data';
 
         const fs = require('fs');
 
@@ -30,4 +30,4 @@ module.exports = class ListTracks {
             });
         }));
     }
-}
+};

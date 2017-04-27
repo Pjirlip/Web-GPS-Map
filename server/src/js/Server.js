@@ -13,7 +13,7 @@ const port = getPortFromArguments();
 const router = express.Router();
 const atracklist = require('./ListTracks');
 
-const myTracklist = new atracklist('./data');
+const myTracklist = new atracklist();
 
 /**
  * save Port from Commandline argument 1 to variable port
@@ -41,7 +41,7 @@ router.get("/", function (request, responds)
 
 router.get("/tracs", function (request, respond)
 {
-    respond.send
+
 });
 
 
