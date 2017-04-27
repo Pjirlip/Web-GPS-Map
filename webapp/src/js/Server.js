@@ -33,7 +33,7 @@ function getPortFromArguments()
  */
 router.get("/", function (request, responds)
 {
-    responds.sendfile("./src/index.html");
+    responds.sendFile("./src/index.html");
 });
 
 /**
