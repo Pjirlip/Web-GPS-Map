@@ -11,8 +11,13 @@ const express = require('express');
 const server = express();
 const port = getPortFromArguments();
 const router = express.Router();
+const atracklist = require('./ListTracks');
 
-/**
+const myTracklist = new atracklist('./data');
+myTracklist.readTrackList();
+
+
+    /**
  * save Port from Commandline argument 1 to variable port
  * @returns {Port from first Commandline argument or 8080 if argument is no valid port}
  */
@@ -34,6 +39,11 @@ function getPortFromArguments()
 router.get("/", function (request, responds)
 {
     responds.sendFile("./server/src/index.html");
+});
+
+router.get("/tracks", function (request, responds)
+{
+   responds.jsonp(myTracklist.tracklist);
 });
 
 /**
