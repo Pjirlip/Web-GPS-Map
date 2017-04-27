@@ -11,6 +11,9 @@ const express = require('express');
 const server = express();
 const port = getPortFromArguments();
 const router = express.Router();
+const atracklist = require('./ListTracks');
+
+const myTracklist = new atracklist('./data');
 
 /**
  * save Port from Commandline argument 1 to variable port
@@ -41,6 +44,23 @@ router.get("/tracs", function (request, respond)
     respond.send
 });
 
+
+
+/**
+ * add route for API List all tracks
+ */
+router.get("/tracks", function (request, responds)
+{
+   responds.jsonp(myTracklist.tracklist);
+});
+
+/**
+ * add route for API List single track
+ */
+router.get("/tracks/:id", function (request, responds)
+{
+    responds.jsonp(myTracklist.trackobjects[request.params.id]);
+});
 
 
 /**

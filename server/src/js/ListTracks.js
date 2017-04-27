@@ -2,21 +2,16 @@
  * Created by dominik.wirtz on 27.04.17.
  */
 
-
-class ListTracks {
+module.exports = class ListTracks {
     constructor(datafolder) {
         this.tracklist = [];
         this.trackobjects = [];
-        this.datafolder = datafolder;
+        this.datafolder = '../../data';
 
-    readTrackList() {
         const fs = require('fs');
 
-        var tmp = [];
-
-        files = (fs.readdir(this.dataFolder, (err, files) => {
-
-            var regex = new RegExp(".+\.json$");
+        let files = (fs.readdir(this.datafolder, (err, files) => {
+            let regex = new RegExp(".+\.json$");
             if (!files) {
                 return;
             }
@@ -24,12 +19,15 @@ class ListTracks {
                 if (!file.match(regex)) {
                     return
                 }
+                let id = file.split(".",1).toString();
+                let name =  JSON.parse(fs.readFileSync("" + this.datafolder +"/" + file)).features[0].properties.name;
 
-                var tmp = JSON.parse(fs.readFileSync(this.dataFolder + "/" + file)).features[0].properties.name;
-                tmp.push(tmp);
+                var tmp = JSON.stringify({id, name});
+                // ;
+
+                this.tracklist.push(tmp);
+                this.trackobjects.push(JSON.parse(fs.readFileSync("" + this.datafolder +"/" + file)));
             });
         }));
-        this.trackobjects = tmp;
     }
-
 }
