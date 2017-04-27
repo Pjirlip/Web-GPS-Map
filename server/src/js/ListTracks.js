@@ -6,13 +6,12 @@ module.exports = class ListTracks {
     constructor(datafolder) {
         this.tracklist = {};
         this.trackobjects = {};
-        this.datafolder = datafolder;
+        this.datafolder = datafolder.toString();
 
         const fs = require('fs');
-
         let files = (fs.readdir(this.datafolder, (err, files) => {
-
-            files.forEach(file => {
+            if (files){
+                files.forEach(file => {
 
                     let id = file.split(".",1).toString();
 
@@ -22,11 +21,17 @@ module.exports = class ListTracks {
                             this.tracklist[id] = this.trackobjects[id].features[0].properties.name;
                         }
                         catch(e) {
-                            console.log(`${file} is no JSON file`);
+                            console.info(`${file} is no JSON file`);
                         }
                     });
-                
-            });
+
+                });
+            } else {
+                console.error(`No Files to add!`)
+            }
+
         }));
+
+
     }
 };
