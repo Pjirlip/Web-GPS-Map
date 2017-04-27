@@ -39,12 +39,6 @@ router.get("/", function (request, responds)
     responds.sendFile("./server/src/index.html");
 });
 
-router.get("/tracs", function (request, respond)
-{
-
-});
-
-
 
 /**
  * add route for API List all tracks
