@@ -3,7 +3,7 @@
  */
 
 module.exports = class ListTracks {
-    constructor() {
+    constructor(datafolder) {
         this.tracklist = [];
         this.trackobjects = [];
         this.datafolder = datafolder;
@@ -22,7 +22,7 @@ module.exports = class ListTracks {
                 let id = file.split(".",1).toString();
                 let name =  JSON.parse(fs.readFileSync("" + this.datafolder +"/" + file)).features[0].properties.name;
 
-                var tmp = JSON.stringify({id, name});
+                let tmp = JSON.stringify({id, name});
                 // ;
 
                 this.tracklist.push(tmp);
