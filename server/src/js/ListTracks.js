@@ -4,16 +4,17 @@
 
 
 class ListTracks {
-    constructor() {
+    constructor(datafolder) {
         this.tracklist = [];
         this.trackobjects = [];
-    }
+        this.datafolder = datafolder;
 
     readTrackList() {
         const fs = require('fs');
+
         var tmp = [];
 
-        files = (fs.readdir(dataFolder, (err, files) => {
+        files = (fs.readdir(this.dataFolder, (err, files) => {
 
             var regex = new RegExp(".+\.json$");
             if (!files) {
@@ -24,7 +25,7 @@ class ListTracks {
                     return
                 }
 
-                var tmp = JSON.parse(fs.readFileSync(dataFolder + "/" + file)).features[0].properties.name;
+                var tmp = JSON.parse(fs.readFileSync(this.dataFolder + "/" + file)).features[0].properties.name;
                 tmp.push(tmp);
             });
         }));
