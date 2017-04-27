@@ -6,7 +6,7 @@ module.exports = class ListTracks {
     constructor(datafolder) {
         this.tracklist = [];
         this.trackobjects = [];
-        this.datafolder = '../../data';
+        this.datafolder = datafolder;
 
         const fs = require('fs');
 
