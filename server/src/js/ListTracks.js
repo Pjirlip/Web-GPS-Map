@@ -22,10 +22,7 @@ module.exports = class ListTracks {
                 let id = file.split(".",1).toString();
                 let name =  JSON.parse(fs.readFileSync("" + this.datafolder +"/" + file)).features[0].properties.name;
 
-                let tmp = JSON.stringify({id, name});
-                // ;
-
-                this.tracklist.push(tmp);
+                this.tracklist.push(JSON.stringify({id, name}));
                 this.trackobjects.push(JSON.parse(fs.readFileSync("" + this.datafolder +"/" + file)));
             });
         }));
