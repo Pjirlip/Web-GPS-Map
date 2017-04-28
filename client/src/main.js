@@ -2,19 +2,9 @@
  * Created by Philipp on 28.04.17.
  */
 
-let $ = require("jquery");
+require("jquery");
 require("./client");
+let leaflet = require("leaflet");
 
-$(document).ready(function () {
-
-    $("#testdiv").css("width", "200px");
-
-    $("#testdiv").css("height", "200px");
-
-    $("#testdiv").css("background-color", "#FF00FF");
-
-	console.log("Neue Änderungen");
-});
-
-
+let map = leaflet.map("map").setView([47.766267, 6.628852], 13);
 
