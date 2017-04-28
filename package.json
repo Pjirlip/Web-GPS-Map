@@ -7,7 +7,7 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "./node_modules/.bin/eslint ./",
-    "build": "browserify ./client/src/main.js > ./client/src/bundel.js",
+    "build": "browserify ./client/src/main.js > ./client/src/bundle.js",
     "debug": ""
   },
   "author": "Philipp Dippel & Dominik Wirtz",

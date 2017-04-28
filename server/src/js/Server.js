@@ -15,6 +15,16 @@ const ListTracks = require("./ListTracks");
 
 const myTracklist = new ListTracks("./server/data");
 
+const options
+	= {
+		root: __dirname + "/../../../client/",
+		dotfiles: "deny",
+		headers: {
+			"x-timestamp": Date.now(),
+			"x-sent": true
+		}
+	};
+
 /**
  * save Port from Commandline argument 1 to variable port
  * @returns {Port from first Commandline argument or 8080 if argument is no valid port}
@@ -32,7 +42,7 @@ function getPortFromArguments() {
  * add route for Homepage
  */
 router.get("/", function (request, responds) {
-	responds.sendFile("./server/src/index.html");
+	responds.sendFile("index.html", options);
 });
 
 /**
