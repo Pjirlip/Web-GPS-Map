@@ -2,4 +2,5 @@
  * Created by Philipp on 24.04.17.
  */
 
-require("./Server");
+const Server = require("./Server");
+let server = new Server();
