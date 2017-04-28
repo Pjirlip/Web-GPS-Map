@@ -8,13 +8,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint -c ../.eslintrc.json js/**",
     "static": "cp client/src/index.html dist && cp -r client/assets/. dist",
-
     "clean": "npm run clean:dist && rm -rf node_modules",
     "clean:dist": "rm -rf dist",
-
     "css": "lessc client/styles/style.less dist/style.css",
     "css:min": "lessc --clean-css client/styles/style.less dist/style.min.css",
-
     "js": "browserify ./client/src/main.js > dist/bundle.js",
     "build": "npm install && mkdir dist && npm run static && npm run css:min && npm run js",
     "debug": ""
@@ -22,7 +19,8 @@
   "author": "Philipp Dippel & Dominik Wirtz",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "jquery": "^3.2.1"
   },
   "devDependencies": {
     "browserify": "^14.3.0",

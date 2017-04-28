@@ -1,8 +1,30 @@
 
 
 @farbe1: #CAF28D;
+@flexbg: #185EC7;
 
 body
 {
   background: @farbe1;
+}
+
+.flexcontainer
+{
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+  background: @flexbg;
+}
+
+
+#map
+{
+  order: 1;
+
+}
+
+#list
+{
+  order: 2;
 }

@@ -10,3 +10,5 @@ module.exports = class Client {
 	}
 
 };
+
+console.log("Hallo Chrome");
