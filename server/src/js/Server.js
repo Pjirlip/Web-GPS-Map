@@ -15,7 +15,7 @@ const ListTracks = require("./ListTracks");
 
 const myTracklist = new ListTracks("./server/data");
 
-server.use(express.static("/dist/"));
+server.use(express.static("dist"));
 
 const options
 	= {

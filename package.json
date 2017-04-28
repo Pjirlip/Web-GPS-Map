@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint -c ../.eslintrc.json js/**",
 
-    "static": "cp -r client/src/index.html dist && cp src/assets/. dist",
+    "static": "cp client/src/index.html dist && cp -r client/assets/. dist",
 
     "clean": "npm run clean:dist && rm -rf node_modules",
     "clean:dist": "rm -rf dist",
