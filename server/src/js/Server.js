@@ -7,6 +7,7 @@
  * Created by Dominik Wirtz & Philipp Dippel
  */
 
+
 const express = require("express");
 const server = express();
 const port = getPortFromArguments();
