@@ -9,10 +9,14 @@
 # Thumbnails
 ._*
 
-
 ### WebStorm ###
 .idea/
 
 ### Build ###
 node_modules/
+dist/
+
+### res ###
+Web-Entwicklung - HausarbeitSS17.pdf
+ref/
 
