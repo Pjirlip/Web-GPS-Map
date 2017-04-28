@@ -24,6 +24,7 @@ module.exports = class ListTracks {
 					fs.readFile(this.datafolder + "/" + file, (err, data) => {
 						try {
                             // Parse file to JSON Object and add to trackobject
+
 							this.trackobjects[id] = JSON.parse(data);
                             // add Entry to tracklist with name of Track from JSON Objekt
 							this.tracklist.push({ id: id, name: this.trackobjects[id].features[0].properties.name });
