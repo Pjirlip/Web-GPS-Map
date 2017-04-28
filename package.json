@@ -7,7 +7,7 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "./node_modules/.bin/eslint ./",
-    "build": "browserify ./client/src/main.js -o ../../client/src/bundle.js",
+    "build": "browserify ./client/src/main.js > ./client/src/bundel.js",
     "debug": ""
   },
   "author": "Philipp Dippel & Dominik Wirtz",
@@ -19,5 +19,6 @@
   "devDependencies": {
     "eslint": "^3.19.0",
     "browserify": "^14.3.0"
+
   }
 }
