@@ -1,16 +1,21 @@
 {
-  "name": "webapp",
-  "version": "1.0.0",
-  "description": "server for gps tracks",
+  "name": "webGPSmap",
+  "version": "0.0.2",
+  "description": "View GEOJSON fiels on Openstreetmap",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify main.js -o bundle.js"
+    "lint": "./node_modules/.bin/eslint ./",
+    "build":"browserify main.js -o bundle.js",
+    "debug":""
   },
   "author": "Philipp Dippel & Dominik Wirtz",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "eslint": "^3.19.0"
+  },
+  "devDependencies": {
   }
 }
