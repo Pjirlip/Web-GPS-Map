@@ -15,9 +15,10 @@ const ListTracks = require("./ListTracks");
 
 const myTracklist = new ListTracks("./server/data");
 
+server.use(express.static("/dist/"));
+
 const options
 	= {
-		root: __dirname + "/../../../client/",
 		dotfiles: "deny",
 		headers: {
 			"x-timestamp": Date.now(),

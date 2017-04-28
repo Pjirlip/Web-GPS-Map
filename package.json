@@ -6,8 +6,16 @@
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/.bin/eslint ./",
-    "build": "browserify ./client/src/main.js > ./client/src/bundle.js",
+    "lint": "eslint -c ../.eslintrc.json js/**",
+
+    "static": "cp -r client/src/index.html dist && cp src/assets/. dist",
+
+    "clean": "npm run clean:dist && rm -rf node_modules",
+    "clean:dist": "rm -rf dist",
+
+    "js": "browserify ./client/src/main.js > dist/bundle.js",
+
+    "build": "npm install && mkdir dist && npm run static && npm run js",
     "debug": ""
   },
   "author": "Philipp Dippel & Dominik Wirtz",
