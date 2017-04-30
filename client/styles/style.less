@@ -1,36 +1,116 @@
+@listItemColor1: #4affa3;
+@listItemColor1Hover: rgba(74,255,163, 0.8);
+@listItemColor2: #fff677;
+@listItemColor2Hover: rgba(255,246,119, 0.8);
 
+@flexControllContainerColor: black;
 
-@farbe1: #CAF28D;
-@flexbg: #185EC7;
-
-body
+*
 {
-  background: @farbe1;
+  -webkit-transition: opacity 0.4s linear;
+  -moz-transition: opacity 0.4s linear;
+  -ms-transition: opacity 0.4s linear;
+  -o-transition: opacity 0.4s linear;
+  transition: opacity 0.4s linear;
+}
+
+body {
+  background: black;
   height: 100vh;
   width: 100vw;
   margin: 0;
 }
 
-.flexcontainer
-{
+.flexcontainer {
   display: flex;
   flex-direction: row;
   height: 100%;
   width: 100%;
-  background: @flexbg;
   margin: 0;
 }
 
-
-#map
-{
+#map {
   order: 1;
   flex-grow: 1;
 
 }
 
-#list
-{
+#list {
   order: 2;
-  flex-basis: 300px;
+  flex-basis: 450px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
+
+#listControl {
+  order: 1;
+  overflow: auto;
+  height: 50px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  background-color: @flexControllContainerColor;
+}
+
+#listItemsContainer {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  flex-grow: 1;
+  flex-direction: column;
+  order: 2;
+  background-color: black;
+  list-style: none;
+  min-width: 0;
+  background-image: url("IsLoading.gif");
+  background-repeat: no-repeat;
+  background-size: 150px;
+  background-position: center center;
+
+
+
+
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 35px;
+  height: 35px;
+  margin: 0;
+  padding-left: 10px;
+  cursor: pointer;
+  flex-direction: row;
+  min-width: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
+}
+
+
+.listItem:nth-child(even)
+{
+  background-color: @listItemColor1;
+}
+.listItem:nth-child(even):hover
+{
+  background-color: @listItemColor1Hover;
+}
+
+
+.listItem:nth-child(odd)
+{
+  background-color: @listItemColor2;
+}
+
+.listItem:nth-child(odd):hover
+{
+  background-color: @listItemColor2Hover;
+}
+

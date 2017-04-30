@@ -1,9 +1,10 @@
 /**
  * Created by Philipp on 28.04.17.
  */
-let $ = require("jquery");
+
 const Map = require("./Map");
-require("./Client");
+const Client = require("./Client");
 
 let myMap = new Map();
+let client = new Client();
 
