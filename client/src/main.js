@@ -3,8 +3,8 @@
  */
 
 const Map = require("./Map");
-const Client = require("./Client");
+const TrackList = require("./TrackList");
 
 let myMap = new Map();
-let client = new Client();
+let tracklist = new TrackList();
 
