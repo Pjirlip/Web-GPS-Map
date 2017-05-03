@@ -57,7 +57,7 @@ module.exports = class TrackList {
 			}
 			if($("li").length < maxItemsPossible)
 			{
-                itemsContainer.append("<li id='spacer'> </li>");
+                itemsContainer.append("<li class='listItem' id='spacer'> </li>");
 			}
 
 			showAll();

@@ -159,13 +159,22 @@ button:hover:enabled {
   margin-right: 10px;
 }
 
-#spacer
+#spacer.listItem:nth-child(odd)
 {
   display: flex;
   flex-shrink: 1;
   flex-grow: 100000;
   flex-basis: auto;
   background-color: @listItemColor1;
+}
+
+#spacer.listItem:nth-child(even)
+{
+  display: flex;
+  flex-shrink: 1;
+  flex-grow: 100000;
+  flex-basis: auto;
+  background-color: @listItemColor2;
 }
 
 
