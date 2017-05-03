@@ -10,12 +10,13 @@ module.exports = class Map {
 			maxZoom: 17
 		}).addTo(map);
 
-		$.getJSON("http://localhost:8080/tracks/2", function (data) {
-			let trackLayer = leaflet.geoJSON(data);
-			trackLayer.addTo(map);
-
-			map.fitBounds(trackLayer.getBounds(), { padding: [25, 25] });
-		});
+		function showTrackOnMap(trackURL) {
+			$.getJSON(trackURL, function (data) {
+				let trackLayer = leaflet.geoJSON(data);
+				trackLayer.addTo(map);
+				map.fitBounds(trackLayer.getBounds(), { padding: [25, 25] });
+			});
+		}
 	}
 
 };

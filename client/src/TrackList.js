@@ -51,13 +51,12 @@ module.exports = class TrackList {
 				itemsContainer.append("<li id='Item" + i + "' class='listItem'><p>" + tracksArray[i].name + "</p></li>");
 				let item = $("#Item" + i);
 				item.bind("click", function () {
-					console.log("Track wird geladen, von: " + item);
+					showTrackOnMap("http://localhost:8080/tracks/" + i);
 				});
 				item.css("opacity", "0.2");
 			}
-			if($("li").length < maxItemsPossible)
-			{
-                itemsContainer.append("<li class='listItem' id='spacer'> </li>");
+			if ($("li").length < maxItemsPossible)			{
+				itemsContainer.append("<li class='listItem' id='spacer'> </li>");
 			}
 
 			showAll();
