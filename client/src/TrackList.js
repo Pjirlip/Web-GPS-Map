@@ -10,9 +10,9 @@ module.exports = class TrackList {
 		let maxItemsPossible = 0;
 		let startItem = 0;
 		let endItem = 0;
+		let lastItem = 0;
 		let timeout;
-		let page = 3;
-
+		let page = 2;
 		calcItems();
 		loadTrackListFromAPI();
 
@@ -27,16 +27,21 @@ module.exports = class TrackList {
 		});
 
 		function calcItems() {
-			maxItemsPossible = (Math.floor(itemsContainer.height() / 35));
+			maxItemsPossible = (Math.floor(itemsContainer.height() / 41));
 			startItem = page * maxItemsPossible;
-			endItem = startItem + maxItemsPossible;
+			if (startItem + maxItemsPossible <= lastItem) {
+				endItem = startItem + maxItemsPossible;
+			}
+			else {
+				endItem = lastItem;
+			}
 		}
 
 		//Fügt Listenelemente in die UL ein und gibt jeder eine ID.
 		function addElementsToList() {
 			//Render First Block of Items
 			for (let i = startItem; i < endItem; i++) {
-				itemsContainer.append("<li id='Item" + i + "' class='listItem'>" + tracksArray[i].name + "</li>");
+				itemsContainer.append("<li id='Item" + i + "' class='listItem'><p>" + tracksArray[i].name + "</p></li>");
 				let item = $("#Item" + i);
 				item.bind("click", function () {
 					console.log("Track wird geladen, von: " + item);
@@ -49,9 +54,17 @@ module.exports = class TrackList {
 			$.get("http://localhost:8080/tracks", function (data) {
 				if (data instanceof Array) {
 					tracksArray = data;
+					lastItem = data.length;
 				}
+				calcItems();
 				addElementsToList();
 			});
+		}
+
+		function nextPage() {
+			page += 1;
+			calcItems();
+			addElementsToList();
 		}
 		//Blendet alle ListenElemente ein. Ohne Aus und Einblenden Flickert die Liste beim neuladen.
 		function showAll() {
