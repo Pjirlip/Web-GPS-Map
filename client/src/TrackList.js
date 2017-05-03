@@ -57,6 +57,7 @@ module.exports = class TrackList {
 			}
 			clearTimeout(timeout);
 			timeout = setTimeout(showAll, 100);
+			checkButtons();
 		}
 		//Läd die Daten und Ruft Add Element für alle Listenelemente auf
 		function loadTrackListFromAPI() {
@@ -69,32 +70,38 @@ module.exports = class TrackList {
 			});
 		}
 
-		function nextPage() {
+		function checkButtons() {
 			prevButton.prop("disabled", false);
-			if (page < maxPages)			{
-				page += 1;
-				calcItems();
-				addElementsToList();
+			nextButton.prop("disabled", false);
+
+			if (page === 0) {
+				{
+					prevButton.prop("disabled", true);
+				}
 			}
-			if (page === maxPages)			{
+
+			if (page === maxPages) {
 				nextButton.prop("disabled", true);
 			}
 		}
 
-		function prevPage() {
-			nextButton.prop("disabled", false);
+		function nextPage() {
+			if (page < maxPages) {
+				page += 1;
+				calcItems();
+				addElementsToList();
+			}
+			checkButtons();
+		}
 
+		function prevPage() {
 			if (page !== 0) {
 				page -= 1;
 				calcItems();
 				addElementsToList();
 			}
 
-			if (page === 0)				{
-				{
-					prevButton.prop("disabled", true);
-				}
-			}
+			checkButtons();
 		}
 
 		//Blendet alle ListenElemente ein. Ohne Aus und Einblenden Flickert die Liste beim neuladen.
