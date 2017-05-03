@@ -55,6 +55,11 @@ module.exports = class TrackList {
 				});
 				item.css("opacity", "0.2");
 			}
+			if($("li").length < maxItemsPossible)
+			{
+                itemsContainer.append("<li id='spacer'> </li>");
+			}
+
 			clearTimeout(timeout);
 			timeout = setTimeout(showAll, 100);
 			checkButtons();
