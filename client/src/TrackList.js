@@ -60,8 +60,7 @@ module.exports = class TrackList {
                 itemsContainer.append("<li id='spacer'> </li>");
 			}
 
-			clearTimeout(timeout);
-			timeout = setTimeout(showAll, 100);
+			showAll();
 			checkButtons();
 		}
 		//Läd die Daten und Ruft Add Element für alle Listenelemente auf
