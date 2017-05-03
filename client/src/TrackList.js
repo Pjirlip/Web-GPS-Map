@@ -2,6 +2,7 @@
  * Created by Philipp on 28.04.17.
  */
 let $ = require("jquery");
+let Map = require("./Map");
 
 module.exports = class TrackList {
 	constructor() {
@@ -11,12 +12,14 @@ module.exports = class TrackList {
 		let startItem = 0;
 		let endItem = 0;
 		let lastItem = 0;
-		let timeout;
 		let page = 0;
 		let maxPages = 0;
 		let pageIndex = $("#Pageindex");
 		let nextButton = $("#buttonNext");
 		let prevButton = $("#buttonBack");
+		let myMap = new Map();
+
+
 
 		loadTrackListFromAPI();
 
@@ -51,7 +54,7 @@ module.exports = class TrackList {
 				itemsContainer.append("<li id='Item" + i + "' class='listItem'><p>" + tracksArray[i].name + "</p></li>");
 				let item = $("#Item" + i);
 				item.bind("click", function () {
-					showTrackOnMap("http://localhost:8080/tracks/" + i);
+					myMap.showTrackOnMap("http://localhost:8080/tracks/" + i);
 				});
 				item.css("opacity", "0.2");
 			}
