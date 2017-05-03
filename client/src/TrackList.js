@@ -13,16 +13,18 @@ module.exports = class TrackList {
 		let lastItem = 0;
 		let timeout;
 		let page = 0;
-		calcItems();
+		let maxPages = 0;
+		let pageIndex = $("#Pageindex");
+		let nextButton = $("#buttonNext");
+		let prevButton = $("#buttonBack");
+
 		loadTrackListFromAPI();
 
-		$("#buttonNext").bind("click", nextPage);
-		$("#buttonBack").bind("click", prevPage);
-
-		$(document).ready(showAll);
+		nextButton.bind("click", nextPage);
+		prevButton.bind("click", prevPage);
+		prevButton.prop("disabled", true);
 
 		$(window).resize(function () {
-			calcItems();
 			addElementsToList();
 		});
 
@@ -35,13 +37,16 @@ module.exports = class TrackList {
 			else {
 				endItem = lastItem;
 			}
+
+			maxPages = Math.floor(lastItem / maxItemsPossible);
+			pageIndex.text((page + 1) + "/" + (maxPages + 1));
 		}
 
 		//Fügt Listenelemente in die UL ein und gibt jeder eine ID.
 		function addElementsToList() {
 			//Render First Block of Items
+			calcItems();
 			$("li").remove();
-			clearTimeout(timeout);
 			for (let i = startItem; i < endItem; i++) {
 				itemsContainer.append("<li id='Item" + i + "' class='listItem'><p>" + tracksArray[i].name + "</p></li>");
 				let item = $("#Item" + i);
@@ -50,7 +55,7 @@ module.exports = class TrackList {
 				});
 				item.css("opacity", "0.2");
 			}
-
+			clearTimeout(timeout);
 			timeout = setTimeout(showAll, 100);
 		}
 		//Läd die Daten und Ruft Add Element für alle Listenelemente auf
@@ -60,22 +65,35 @@ module.exports = class TrackList {
 					tracksArray = data;
 					lastItem = data.length;
 				}
-				calcItems();
 				addElementsToList();
 			});
 		}
 
 		function nextPage() {
-			page += 1;
-			calcItems();
-			addElementsToList();
+			prevButton.prop("disabled", false);
+			if (page < maxPages)			{
+				page += 1;
+				calcItems();
+				addElementsToList();
+			}
+			if (page === maxPages)			{
+				nextButton.prop("disabled", true);
+			}
 		}
 
 		function prevPage() {
-			if (page != 0) {
+			nextButton.prop("disabled", false);
+
+			if (page !== 0) {
 				page -= 1;
 				calcItems();
 				addElementsToList();
+			}
+
+			if (page === 0)				{
+				{
+					prevButton.prop("disabled", true);
+				}
 			}
 		}
 
