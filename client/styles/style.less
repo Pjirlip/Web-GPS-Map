@@ -1,9 +1,9 @@
 @listItemColor1: #FFFFFF;
-@listItemColor1Hover: rgba(255,255,200, 0.8);
+@listItemColor1Hover: #CCCCCC;
 @listItemColor2: #EEEEEE;
-@listItemColor2Hover: rgba(255,255,200, 0.8);
+@listItemColor2Hover: #CCCCCC;
 
-@flexControllContainerColor: #FFFFCC;
+@flexControllContainerColor: #999999;
 
 *
 {
@@ -43,16 +43,7 @@ body {
   min-width: 0;
 }
 
-#listControl {
-  order: 1;
-  overflow: auto;
-  height: 50px;
-  width: 100%;
-  margin: 0;
-  padding: 0;
 
-  background-color: @flexControllContainerColor;
-}
 
 #listItemsContainer {
   display: flex;
@@ -65,14 +56,10 @@ body {
   background-color: black;
   list-style: none;
   min-width: 0;
-  background-image: url("IsLoading.gif");
+  background-image: url("spinner.svg");
   background-repeat: no-repeat;
   background-size: 150px;
   background-position: center center;
-
-
-
-
 }
 
 .listItem {
@@ -118,3 +105,45 @@ body {
   background-color: @listItemColor2Hover;
 }
 
+
+button {
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 1px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  border-radius: 6px;
+}
+
+
+button:hover {
+  background-color: #555555;
+  color: white;
+}
+
+
+ *
+ */
+#listControl {
+  display: flex;
+  order: 1;
+  overflow: auto;
+  height: 50px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  background-color: @flexControllContainerColor;
+}
+
+
+.pageination-container {
+
+}
