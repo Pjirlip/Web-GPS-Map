@@ -12,18 +12,18 @@ module.exports = class TrackList {
 		let endItem = 0;
 		let lastItem = 0;
 		let timeout;
-		let page = 2;
+		let page = 0;
 		calcItems();
 		loadTrackListFromAPI();
+
+		$("#buttonNext").bind("click", nextPage);
+		$("#buttonBack").bind("click", prevPage);
 
 		$(document).ready(showAll);
 
 		$(window).resize(function () {
-			$("li").remove(); //Alle Elemente in der Liste entfernen
 			calcItems();
 			addElementsToList();
-			clearTimeout(timeout);
-			timeout = setTimeout(showAll, 100);
 		});
 
 		function calcItems() {
@@ -40,6 +40,8 @@ module.exports = class TrackList {
 		//Fügt Listenelemente in die UL ein und gibt jeder eine ID.
 		function addElementsToList() {
 			//Render First Block of Items
+			$("li").remove();
+			clearTimeout(timeout);
 			for (let i = startItem; i < endItem; i++) {
 				itemsContainer.append("<li id='Item" + i + "' class='listItem'><p>" + tracksArray[i].name + "</p></li>");
 				let item = $("#Item" + i);
@@ -48,6 +50,8 @@ module.exports = class TrackList {
 				});
 				item.css("opacity", "0.2");
 			}
+
+			timeout = setTimeout(showAll, 100);
 		}
 		//Läd die Daten und Ruft Add Element für alle Listenelemente auf
 		function loadTrackListFromAPI() {
@@ -66,6 +70,15 @@ module.exports = class TrackList {
 			calcItems();
 			addElementsToList();
 		}
+
+		function prevPage() {
+			if (page != 0) {
+				page -= 1;
+				calcItems();
+				addElementsToList();
+			}
+		}
+
 		//Blendet alle ListenElemente ein. Ohne Aus und Einblenden Flickert die Liste beim neuladen.
 		function showAll() {
 			$("li").css("opacity", "1");
