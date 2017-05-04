@@ -17,10 +17,8 @@ module.exports = class TrackList {
 		this.nextButton = $("#buttonNext");
 		this.prevButton = $("#buttonBack");
 		this.mymap = map;
-		console.log(this.mymap);
 
 		this.loadTrackListFromAPI();
-
 
 		this.nextButton.bind("click", () => {
 			this.nextPage();
@@ -37,7 +35,6 @@ module.exports = class TrackList {
 
 	calcItems() {
 		this.maxItemsPossible = (Math.floor(this.itemsContainer.height() / 35));
-		console.log("MAxItems" + this.maxItemsPossible)
 		this.startItem = this.page * this.maxItemsPossible;
 		if (this.startItem + this.maxItemsPossible <= this.lastItem) {
 			this.endItem = this.startItem + this.maxItemsPossible;
@@ -48,12 +45,9 @@ module.exports = class TrackList {
 
 		this.maxPages = Math.ceil(this.lastItem / this.maxItemsPossible);
 
-        if (this.page + 1 > this.maxPages)		{
-            this.page = this.maxPages - 1;
-            console.log("MaxPages: " + this.maxPages + "\t This Page: " + this.page);
-        }
-
-
+		if (this.page + 1 > this.maxPages)		{
+			this.page = this.maxPages - 1;
+		}
 
 		this.pageIndex.text((this.page + 1) + "/" + (this.maxPages));
 	}
@@ -67,7 +61,6 @@ module.exports = class TrackList {
 			this.itemsContainer.append("<li id='Item" + i + "' class='listItem'><p>" + this.tracksArray[i].name + "</p></li>");
 			let item = $("#Item" + i);
 			item.bind("click", () => {
-				console.log(i);
 				this.mymap.showTrackOnMap("http://localhost:8080/tracks/" + (i + 1));
 			});
 			item.css("opacity", "0.2");
