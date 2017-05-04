@@ -46,7 +46,7 @@ module.exports = class TrackList {
 		}
 
 		this.maxPages = Math.ceil(this.lastItem / this.maxItemsPossible);
-		this.pageIndex.text((this.page +1 ) + "/" + (this.maxPages));
+		this.pageIndex.text((this.page + 1 ) + "/" + (this.maxPages));
 	}
 
 	//Fügt Listenelemente in die UL ein und gibt jeder eine ID.
