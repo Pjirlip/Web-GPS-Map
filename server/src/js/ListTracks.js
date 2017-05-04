@@ -21,6 +21,13 @@ module.exports = class ListTracks {
                      * Read all files of list and parse Data to trackobjects
                      * fill tracklist with propertie name of JSON File
                      */
+					console.log(file);
+					let content = fs.readFileSync(this.datafolder + "/" + file);
+					this.trackobjects[id] = JSON.parse(content);
+                    // add Entry to tracklist with name of Track from JSON Objekt
+					this.tracklist.push({ id: id, name: this.trackobjects[id].features[0].properties.name });
+
+                    /**
 					fs.readFile(this.datafolder + "/" + file, (err, data) => {
 						try {
                             // Parse file to JSON Object and add to trackobject
@@ -34,6 +41,10 @@ module.exports = class ListTracks {
 							console.info(`${file} is no JSON file`);
 						}
 					});
+					*/
+				});
+				this.tracklist.sort((a, b)=>{
+					return a.id - b.id;
 				});
 			}
             // DataFolder is empty

@@ -6,6 +6,7 @@ const Map = require("./Map");
 const TrackList = require("./TrackList");
 
 let myMap = new Map();
-let tracklist = new TrackList();
+let tracklist = new TrackList(myMap);
+
 
 
