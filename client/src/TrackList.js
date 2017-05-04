@@ -20,7 +20,7 @@ module.exports = class TrackList {
 		console.log(this.mymap);
 
 		this.loadTrackListFromAPI();
-		this.calcItems();
+
 
 		this.nextButton.bind("click", () => {
 			this.nextPage();
@@ -37,6 +37,7 @@ module.exports = class TrackList {
 
 	calcItems() {
 		this.maxItemsPossible = (Math.floor(this.itemsContainer.height() / 35));
+		console.log("MAxItems" + this.maxItemsPossible)
 		this.startItem = this.page * this.maxItemsPossible;
 		if (this.startItem + this.maxItemsPossible <= this.lastItem) {
 			this.endItem = this.startItem + this.maxItemsPossible;
@@ -46,7 +47,15 @@ module.exports = class TrackList {
 		}
 
 		this.maxPages = Math.ceil(this.lastItem / this.maxItemsPossible);
-		this.pageIndex.text((this.page + 1 ) + "/" + (this.maxPages));
+
+        if (this.page + 1 > this.maxPages)		{
+            this.page = this.maxPages - 1;
+            console.log("MaxPages: " + this.maxPages + "\t This Page: " + this.page);
+        }
+
+
+
+		this.pageIndex.text((this.page + 1) + "/" + (this.maxPages));
 	}
 
 	//Fügt Listenelemente in die UL ein und gibt jeder eine ID.
@@ -64,7 +73,6 @@ module.exports = class TrackList {
 			item.css("opacity", "0.2");
 		}
 		if ($("li").length < this.maxItemsPossible)			{
-
 			this.itemsContainer.append("<li class='listItem' id='spacer'> </li>");
 		}
 
@@ -92,7 +100,7 @@ module.exports = class TrackList {
 			}
 		}
 
-		if (this.page +1 === this.maxPages) {
+		if (this.page + 1 === this.maxPages) {
 			this.nextButton.prop("disabled", true);
 		}
 	}
