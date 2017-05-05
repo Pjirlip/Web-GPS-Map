@@ -34,7 +34,7 @@ module.exports = class TrackList {
 	}
 
 	calcItems() {
-		this.maxItemsPossible = (Math.floor(this.itemsContainer.height() / 35));
+		this.maxItemsPossible = (Math.floor(this.itemsContainer.height() / 42));
 		this.startItem = this.page * this.maxItemsPossible;
 		if (this.startItem + this.maxItemsPossible <= this.lastItem) {
 			this.endItem = this.startItem + this.maxItemsPossible;
