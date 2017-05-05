@@ -31,11 +31,12 @@ module.exports = class TrackList {
 		this.prevButton.prop("disabled", true);
 
 		$(window).resize(() => {
-			this.addElementsToList();
+			this.calcItems();
 			this.calcActivePage();
 			if (this.page !== this.activeItemPage) {
 				this.page = this.activeItemPage;
 			}
+			this.addElementsToList();
 		});
 	}
 
