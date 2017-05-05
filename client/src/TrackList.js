@@ -84,13 +84,11 @@ module.exports = class TrackList {
 				item.addClass("activeTrack");
 			}
 
-			item.css("opacity", "0.2");
 		}
 		if ($("li").length < this.maxItemsPossible)			{
 			this.itemsContainer.append("<li class='listItem' id='spacer'> </li>");
 		}
 
-		this.showAll();
 		this.checkButtons();
 	}
 	//Läd die Daten und Ruft Add Element für alle Listenelemente auf
@@ -138,11 +136,6 @@ module.exports = class TrackList {
 		}
 
 		this.checkButtons();
-	}
-
-	//Blendet alle ListenElemente ein. Ohne Aus und Einblenden Flickert die Liste beim neuladen.
-	showAll() {
-		$("li").css("opacity", "1");
 	}
 
 };
