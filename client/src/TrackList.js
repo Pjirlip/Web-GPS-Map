@@ -17,6 +17,7 @@ module.exports = class TrackList {
 		this.nextButton = $("#buttonNext");
 		this.prevButton = $("#buttonBack");
 		this.mymap = map;
+		this.activeItem = -1;
 
 		this.loadTrackListFromAPI();
 
@@ -61,8 +62,16 @@ module.exports = class TrackList {
 			this.itemsContainer.append("<li id='Item" + i + "' class='listItem'><p>" + this.tracksArray[i].name + "</p></li>");
 			let item = $("#Item" + i);
 			item.bind("click", () => {
+				$("li").removeClass("activeTrack");
+				item.addClass("activeTrack");
 				this.mymap.showTrackOnMap("http://localhost:8080/tracks/" + (i + 1));
+				this.activeItem = i;
+				console.log(this.activeItem);
 			});
+			if (i === this.activeItem) {
+				item.addClass("activeTrack");
+			}
+
 			item.css("opacity", "0.2");
 		}
 		if ($("li").length < this.maxItemsPossible)			{
