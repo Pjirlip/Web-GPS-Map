@@ -18,6 +18,7 @@ module.exports = class TrackList {
 		this.prevButton = $("#buttonBack");
 		this.mymap = map;
 		this.activeItem = -1;
+		this.activeItemPage = 0;
 
 		this.loadTrackListFromAPI();
 
@@ -31,7 +32,17 @@ module.exports = class TrackList {
 
 		$(window).resize(() => {
 			this.addElementsToList();
+			this.calcActivePage();
+			if (this.page !== this.activeItemPage) {
+				this.page = this.activeItemPage;
+			}
 		});
+	}
+
+	calcActivePage()	{
+		if (this.activeItem !== -1) {
+			this.activeItemPage = Math.floor(this.activeItem / this.maxItemsPossible);
+		}
 	}
 
 	calcItems() {
