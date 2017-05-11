@@ -39,9 +39,12 @@ module.exports = class Elevation {
 		});
 
 		this.promise.then(() =>		{
+			this.ctx.lineWidth = 1;
+			this.ctx.lineCap = "round";
+			this.ctx.lineJoin = "round";
 			this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 			this.ctx.beginPath();
-			this.ctx.moveTo(0, this.calcHeight(this.heights[0]));
+			this.ctx.moveTo(0, this.canvas.height);
 
 			var point = 0.0;
 			this.heights.forEach((actualHeight) => {
@@ -49,9 +52,9 @@ module.exports = class Elevation {
 				point++;
 			});
 
-			this.ctx.moveTo(0, this.calcHeight(this.heights[0]));
+			this.ctx.lineTo(this.canvas.width, this.canvas.height);
 			this.ctx.closePath();
-			this.ctx.stroke();
+			this.ctx.fill();
 		});
 	}
 
