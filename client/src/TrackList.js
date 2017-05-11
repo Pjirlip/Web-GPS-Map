@@ -83,7 +83,6 @@ module.exports = class TrackList {
 			if (i === this.activeItem) {
 				item.addClass("activeTrack");
 			}
-
 		}
 		if ($("li").length < this.maxItemsPossible)			{
 			this.itemsContainer.append("<li class='listItem' id='spacer'> </li>");

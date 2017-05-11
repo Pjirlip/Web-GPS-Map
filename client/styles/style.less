@@ -35,10 +35,32 @@ body {
   margin: 0;
 }
 
-#map {
+
+#leftInnerContainer {
+  display: flex;
   order: 1;
   flex-grow: 1;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
 
+#map {
+  display: flex;
+  order: 1;
+  flex-shrink: 1;
+  flex-grow: 1;
+
+}
+
+#infoContainer
+{
+  display: flex;
+  flex-direction: row;
+  order: 2;
+  background-color: @flexControllContainerColor;
+  flex-basis: 120px;
+  flex-shrink: 1;
 }
 
 #list {
@@ -186,8 +208,26 @@ button:hover:enabled {
 
 }
 
+#elevation
+{
+  display: flex;
+  order: 1;
+  width: 500px;
+  color: @listItemColorActive;
+  z-index: 99999;
+  background-color: @listItemColor2;
+
+}
 
 
+#trackInfo
+{
+  display: flex;
+  order: 2;
+  background-color: lightblue;
+  flex-grow: 1;
+
+}
 
 .pageination-container {
 

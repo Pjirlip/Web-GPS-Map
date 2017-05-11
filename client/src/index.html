@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.min.css"/>
+    <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
           integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
           crossorigin=""/>
@@ -14,7 +14,16 @@
 <body>
 
 <main class="flexcontainer">
+    <div id="leftInnerContainer">
     <div id="map"></div>
+    <div id="infoContainer">
+        <canvas id="elevation"> </canvas>
+        <div id="trackInfo"> </div>
+    </div>
+    </div>
+
+
+
     <div id="list">
         <div id="listControl">
         <div id="ButtonContainer">
@@ -29,6 +38,8 @@
 
         </ul>
     </div>
+
+
 </main>
 
 <script src="bundle.js"></script>
