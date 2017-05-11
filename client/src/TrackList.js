@@ -4,7 +4,7 @@
 let $ = require("jquery");
 
 module.exports = class TrackList {
-	constructor(map) {
+	constructor(map, elevation) {
 		this.tracksArray = null;
 		this.itemsContainer = $("#listItemsContainer");
 		this.maxItemsPossible = 0;
@@ -19,6 +19,7 @@ module.exports = class TrackList {
 		this.mymap = map;
 		this.activeItem = -1;
 		this.activeItemPage = 0;
+		this.elevation = elevation;
 
 		this.loadTrackListFromAPI();
 
@@ -79,6 +80,7 @@ module.exports = class TrackList {
 				this.mymap.showTrackOnMap("http://localhost:8080/tracks/" + (i + 1));
 				this.activeItem = i;
 				console.log(this.activeItem);
+				this.elevation.draw("http://localhost:8080/tracks/" + (i + 1));
 			});
 			if (i === this.activeItem) {
 				item.addClass("activeTrack");
