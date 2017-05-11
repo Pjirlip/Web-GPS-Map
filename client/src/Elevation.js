@@ -11,8 +11,6 @@ module.exports = class Elevation {
 		this.maxHeight = -99999;
 		this.minHeigth = 99999;
 		this.maxPoints = 0;
-		this.actualPoint = 0;
-		console.log(this.ctx);
 	}
 
 	draw(trackURL)	{
@@ -41,22 +39,16 @@ module.exports = class Elevation {
 		});
 
 		this.promise.then(() =>		{
-			this.actualPoint = 0;
-
 			this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 			this.ctx.beginPath();
 			this.ctx.moveTo(0, this.calcHeight(this.heights[0]));
 
-			this.heights.forEach((actualHeight) =>			{
-				this.ctx.lineTo(Math.floor(this.actualPoint * this.canvas.width / this.maxPoints), this.calcHeight(actualHeight));
-				this.actualPoint++;
-			});
+			for (let i = 1; i < this.canvas.width; i++) {
+				this.ctx.lineTo(i, this.calcHeight(this.heights[Math.floor(i * this.maxPoints / this.canvas.width)]));
+			}
 			this.ctx.moveTo(0, this.calcHeight(this.heights[0]));
 			this.ctx.closePath();
 			this.ctx.stroke();
-			console.log("Punkte: " + this.maxPoints);
-			console.log("max höhe: " + this.maxHeight);
-			console.log("min höhe: " + this.minHeight);
 		});
 	}
 
