@@ -27,8 +27,8 @@ module.exports = class Elevation {
 					if (coord[2] > this.maxHeight)				{
 						this.maxHeight = coord[2];
 					}
-					if (coord[2] < this.minHeigth)				{
-						this.minHeigth = coord[2];
+					if (coord[2] < this.minHeight)				{
+						this.minHeight = coord[2];
 					}
 
 					this.maxPoints++;
@@ -53,7 +53,7 @@ module.exports = class Elevation {
 	}
 
 	calcHeight(pHeight)	{
-		return this.canvas.height - ((pHeight - this.minHeigth) / (this.maxHeight - this.minHeigth) * this.canvas.height);
+		return this.canvas.height - ((pHeight - this.minHeight) / (this.maxHeight - this.minHeight) * this.canvas.height);
 	}
 
 };
