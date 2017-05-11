@@ -44,12 +44,14 @@ module.exports = class Elevation {
 			this.actualPoint = 0;
 
 			this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+			this.ctx.beginPath();
 			this.ctx.moveTo(0, this.calcHeight(this.heights[0]));
 
 			this.heights.forEach((actualHeight) =>			{
 				this.ctx.lineTo(Math.floor(this.actualPoint * this.canvas.width / this.maxPoints), this.calcHeight(actualHeight));
 				this.actualPoint++;
 			});
+			this.ctx.closePath();
 			this.ctx.stroke();
 			console.log("Punkte: " + this.maxPoints);
 			console.log("max höhe: " + this.maxHeight);
