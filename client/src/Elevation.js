@@ -4,9 +4,9 @@
 let $ = require("jquery");
 
 module.exports = class Elevation {
-	constructor(canvas, ctx) {
-		this.canvas = canvas;
-		this.ctx = ctx;
+	constructor() {
+		this.canvas = document.getElementById("elevation");
+		this.ctx = this.canvas.getContext("2d");
 		this.heights = [];
 		this.maxHeight = -99999;
 		this.minHeigth = 99999;

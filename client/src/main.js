@@ -7,8 +7,6 @@ const TrackList = require("./TrackList");
 const Elevation = require("./Elevation");
 
 let myMap = new Map();
-var canvas = document.getElementById("elevation");
-var ctx = canvas.getContext("2d");
-let elevation = new Elevation(canvas, ctx);
+let elevation = new Elevation();
 let tracklist = new TrackList(myMap, elevation);
 
