@@ -59,14 +59,15 @@ body {
   order: 3;
   background-color: @flexControllContainerColor;
   height: 120px;
+  flex-direction: row;
 }
 
 #list {
   order: 2;
-  flex-basis: 450px;
   display: flex;
   flex-direction: column;
   min-width: 30%;
+  width: 450px;
 }
 
 
@@ -211,7 +212,9 @@ button:hover:enabled {
   color: @listItemColorActive;
   z-index: 99999;
   background-color: @listItemColor2;
-  padding: 5px;
+  padding-top: 5px;
+  width: 70%;
+  min-width: 50%;
 }
 
 
@@ -223,17 +226,22 @@ button:hover:enabled {
   color: white;
   flex-direction: row;
   flex-wrap: wrap;
-  min-width: 0;
   white-space: nowrap;
+  width: 30%;
+  min-width: min-content;
+  min-width: -webkit-min-content;
+
 }
 
 #maxHeight, #minHeight, #downHill, #upHill
 {
-  width: 98%;
+
   display: inline-flex;
   align-items: center;
   padding: 1%;
   color: black;
+  white-space: nowrap;
+  width: 100%;
 
 }
 
@@ -247,6 +255,7 @@ button:hover:enabled {
   min-width: 0;
   height: 30px;
   width: 100%;
+  white-space: nowrap;
 }
 
 #trackDistance
@@ -261,7 +270,6 @@ button:hover:enabled {
 {
   margin: auto;
   padding-left: 10px;
-  vertical-align: middle;
   display: inline-block;
   flex-grow: 1;
   padding-right: 20px;
@@ -276,11 +284,16 @@ button:hover:enabled {
 
 }
 
-@media (max-width: 500px)
+@media (max-width: 600px)
 {
   #trackInfo
   {
     display: none;
+  }
+
+  #elevation
+  {
+    width: 100%;
   }
 
 }

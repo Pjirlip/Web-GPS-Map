@@ -64,8 +64,8 @@ module.exports = class Elevation {
 				this.maxPoints--;
 
 				this.markerGroup.clearLayers();
-				let start = this.mymap.leaflet.marker([data.features[0].geometry.coordinates[0][1], data.features[0].geometry.coordinates[0][0]], { icon: this.greenMarker }).bindPopup("Start");
-				let end = this.mymap.leaflet.marker([data.features[0].geometry.coordinates[this.maxPoints][1], data.features[0].geometry.coordinates[this.maxPoints][0]], { icon: this.redMarker }).bindPopup("End");
+				let start = this.mymap.leaflet.marker([data.features[0].geometry.coordinates[0][1], data.features[0].geometry.coordinates[0][0]], { icon: this.greenMarker }).bindPopup("Start of Track");
+				let end = this.mymap.leaflet.marker([data.features[0].geometry.coordinates[this.maxPoints][1], data.features[0].geometry.coordinates[this.maxPoints][0]], { icon: this.redMarker }).bindPopup("End of Track");
 
 				this.markerGroup = this.mymap.leaflet.layerGroup([start, end]).addTo(this.mymap.map);
 
@@ -93,7 +93,7 @@ module.exports = class Elevation {
 			console.log(this.distance);
 
 			$("#downHill").text("Bergab: " + Math.ceil(this.meterRunter) + " m");
-			$("#upHill").text("Bergauf: " + Math.ceil(this.meterRauf));
+			$("#upHill").text("Bergauf: " + Math.ceil(this.meterRauf) + " m");
 			$("#maxHeight").text("Maximale Höhe: " + Math.ceil(this.maxHeight) + " m");
 			$("#minHeight").text("Minimale Höhe: " + Math.floor(this.minHeight) + " m");
 			$("#trackDistance").text("Strecke: " + Math.ceil(this.distance) + " m");
