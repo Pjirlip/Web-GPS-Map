@@ -97,11 +97,11 @@ module.exports = class Elevation {
 			//console.log("Laenge: " + this.laenge);
 			console.log(this.distance);
 
-			$("#downHill").text("Bergab: " + this.meterRunter);
-            $("#upHill").text("Bergauf: " + this.meterRauf);
-            $("#maxHeight").text("Maximale Höhe: " + this.maxHeight);
-            $("#maxHeight").text("Maximale Höhe: " + this.maxHeight);
-
+			$("#downHill").text("Bergab: " + Math.ceil(this.meterRunter));
+			$("#upHill").text("Bergauf: " + Math.ceil(this.meterRauf));
+			$("#maxHeight").text("Maximale Höhe: " + Math.ceil(this.maxHeight));
+			$("#minHeight").text("Minimale Höhe: " + Math.floor(this.minHeight));
+			$("#trackDistance").text("Strecke: " + Math.ceil(this.distance));
 		});
 	}
 

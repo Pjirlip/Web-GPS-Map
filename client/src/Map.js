@@ -18,6 +18,7 @@ module.exports = class Map {
 			this.trackLayerGroup.addLayer(trackLayer);
 			this.trackLayerGroup.addTo(this.map);
 			this.map.fitBounds(trackLayer.getBounds(), { padding: [25, 25] });
+			$("#trackName").text(data.features[0].properties.name);
 		});
 	}
 };
