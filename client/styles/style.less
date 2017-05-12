@@ -56,11 +56,9 @@ body {
 #infoContainer
 {
   display: flex;
-  flex-direction: row;
-  order: 2;
+  order: 3;
   background-color: @flexControllContainerColor;
-  flex-basis: 120px;
-  flex-shrink: 1;
+  height: 120px;
 }
 
 #list {
@@ -68,7 +66,7 @@ body {
   flex-basis: 450px;
   display: flex;
   flex-direction: column;
-  min-width: 0;
+  min-width: 30%;
 }
 
 
@@ -209,14 +207,11 @@ button:hover:enabled {
 
 #elevation
 {
-  display: flex;
   order: 1;
-  width: 60%;
   color: @listItemColorActive;
   z-index: 99999;
   background-color: @listItemColor2;
   padding: 5px;
-  flex-shrink: 0;
 }
 
 
@@ -226,16 +221,15 @@ button:hover:enabled {
   order: 2;
   background-color: @listItemColor1 ;
   color: white;
-  flex-grow: 1;
   flex-direction: row;
   flex-wrap: wrap;
   min-width: 0;
   white-space: nowrap;
 }
 
-#trackDistance, #maxHeight, #minHeight, #downHill, #upHill, #trackName
+#maxHeight, #minHeight, #downHill, #upHill
 {
-  width: 48%;
+  width: 98%;
   display: inline-flex;
   align-items: center;
   padding: 1%;
@@ -243,21 +237,34 @@ button:hover:enabled {
 
 }
 
-#trackDistance
+#infoHeader
 {
-  width: auto;
+  display: flex;
+  order: 2;
   background-color: @listItemColorActive;
   color: white;
+  flex-direction: row;
+  min-width: 0;
+  height: 30px;
+  width: 100%;
+}
+
+#trackDistance
+{
+  margin: auto;
+  width: auto;
+  vertical-align: middle;
+  padding-right: 10px;
 }
 
 #trackName
 {
-  background-color: @listItemColorActive;
+  margin: auto;
+  padding-left: 10px;
+  vertical-align: middle;
   display: inline-block;
-  color: white;
   flex-grow: 1;
   padding-right: 20px;
-  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -266,5 +273,14 @@ button:hover:enabled {
 
 
 .pageination-container {
+
+}
+
+@media (max-width: 500px)
+{
+  #trackInfo
+  {
+    display: none;
+  }
 
 }
