@@ -4,7 +4,7 @@
 let $ = require("jquery");
 
 module.exports = class Elevation {
-	constructor() {
+	constructor(map) {
 		this.canvas = document.getElementById("elevation");
 		this.ctx = this.canvas.getContext("2d");
 		this.heights = [];
@@ -15,6 +15,10 @@ module.exports = class Elevation {
 		this.meterRauf = 0;
 		this.meterRunter = 0;
 		this.lastheight = -99999;
+		this.mymap = map;
+		this.distance = 0.0;
+		this.latlongOld = null;
+		this.latLongNew = null;
 	}
 
 	draw(trackURL)	{
@@ -27,12 +31,15 @@ module.exports = class Elevation {
 			this.laenge = 0;
 			this.meterRauf = 0;
 			this.meterRunter = 0;
+			this.latlongOld = null;
+			this.latLongNew = null;
+			this.distance = 0.0;
 			$.getJSON(trackURL, (data) => {
 				data.features[0].geometry.coordinates.forEach((coord) => {
 					this.heights.push(coord[2]);
-					this.calcLength(coord[0], coord[1]);
 					this.calcRaufRunter(coord[2]);
 					this.setMinMax(coord[2]);
+					this.calcDistance(coord[1], coord[0]);
 					this.maxPoints++;
 				});
 
@@ -57,20 +64,17 @@ module.exports = class Elevation {
 			this.ctx.lineTo(this.canvas.width, this.canvas.height);
 			this.ctx.closePath();
 			this.ctx.fill();
-			console.log("HoeheMax:" + this.maxHeight);
-			console.log("HoeheMin:" + this.minHeight);
-			console.log("Rauf: " + this.meterRauf);
-			console.log("Runter: " + this.meterRunter);
-			console.log("Laenge: " + this.laenge);
+			//console.log("HoeheMax:" + this.maxHeight);
+			//console.log("HoeheMin:" + this.minHeight);
+			//console.log("Rauf: " + this.meterRauf);
+			//console.log("Runter: " + this.meterRunter);
+			//console.log("Laenge: " + this.laenge);
+			console.log(this.distance);
 		});
 	}
 
 	calcHeight(pHeight)	{
 		return this.canvas.height - ((pHeight - this.minHeight) / (this.maxHeight - this.minHeight) * this.canvas.height);
-	}
-
-	calcLength(laenge, breite) {
-		console.log("test");
 	}
 
 	calcRaufRunter(hight) {
@@ -93,6 +97,18 @@ module.exports = class Elevation {
 		}
 		if (minmaxHoehe < this.minHeight)				{
 			this.minHeight = minmaxHoehe;
+		}
+	}
+
+	calcDistance(lat, long)	{
+		if (this.latlongOld === null)		{
+			this.latlongOld = this.mymap.leaflet.latLng(lat, long);
+			this.latLongNew = this.mymap.leaflet.latLng(lat, long);
+		}
+		else			{
+			this.latLongNew = this.mymap.leaflet.latLng(lat, long);
+			this.distance = this.distance + this.latlongOld.distanceTo(this.latLongNew);
+			this.latlongOld = this.latLongNew;
 		}
 	}
 

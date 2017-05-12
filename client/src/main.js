@@ -7,6 +7,6 @@ const TrackList = require("./TrackList");
 const Elevation = require("./Elevation");
 
 let myMap = new Map();
-let elevation = new Elevation();
+let elevation = new Elevation(myMap);
 let tracklist = new TrackList(myMap, elevation);
 
