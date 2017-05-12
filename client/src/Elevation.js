@@ -90,18 +90,13 @@ module.exports = class Elevation {
 			this.ctx.lineTo(this.canvas.width, this.canvas.height);
 			this.ctx.closePath();
 			this.ctx.fill();
-			//console.log("HoeheMax:" + this.maxHeight);
-			//console.log("HoeheMin:" + this.minHeight);
-			//console.log("Rauf: " + this.meterRauf);
-			//console.log("Runter: " + this.meterRunter);
-			//console.log("Laenge: " + this.laenge);
 			console.log(this.distance);
 
-			$("#downHill").text("Bergab: " + Math.ceil(this.meterRunter));
+			$("#downHill").text("Bergab: " + Math.ceil(this.meterRunter) + " m");
 			$("#upHill").text("Bergauf: " + Math.ceil(this.meterRauf));
-			$("#maxHeight").text("Maximale Höhe: " + Math.ceil(this.maxHeight));
-			$("#minHeight").text("Minimale Höhe: " + Math.floor(this.minHeight));
-			$("#trackDistance").text("Strecke: " + Math.ceil(this.distance));
+			$("#maxHeight").text("Maximale Höhe: " + Math.ceil(this.maxHeight) + " m");
+			$("#minHeight").text("Minimale Höhe: " + Math.floor(this.minHeight) + " m");
+			$("#trackDistance").text("Strecke: " + Math.ceil(this.distance) + " m");
 		});
 	}
 
