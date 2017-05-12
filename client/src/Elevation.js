@@ -19,6 +19,25 @@ module.exports = class Elevation {
 		this.distance = 0.0;
 		this.latlongOld = null;
 		this.latLongNew = null;
+		this.markerGroup = this.mymap.leaflet.layerGroup();
+
+		this.redMarker = new this.mymap.leaflet.Icon({
+			iconUrl: "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
+			shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+			iconSize: [25, 41],
+			iconAnchor: [12, 41],
+			popupAnchor: [1, -34],
+			shadowSize: [41, 41]
+		});
+
+		this.greenMarker = new this.mymap.leaflet.Icon({
+			iconUrl: "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+			shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+			iconSize: [25, 41],
+			iconAnchor: [12, 41],
+			popupAnchor: [1, -34],
+			shadowSize: [41, 41]
+		});
 	}
 
 	draw(trackURL)	{
@@ -42,6 +61,13 @@ module.exports = class Elevation {
 					this.calcDistance(coord[1], coord[0]);
 					this.maxPoints++;
 				});
+				this.maxPoints--;
+
+				this.markerGroup.clearLayers();
+				let start = this.mymap.leaflet.marker([data.features[0].geometry.coordinates[0][1], data.features[0].geometry.coordinates[0][0]], { icon: this.greenMarker }).bindPopup("Start");
+				let end = this.mymap.leaflet.marker([data.features[0].geometry.coordinates[this.maxPoints][1], data.features[0].geometry.coordinates[this.maxPoints][0]], { icon: this.redMarker }).bindPopup("End");
+
+				this.markerGroup = this.mymap.leaflet.layerGroup([start, end]).addTo(this.mymap.map);
 
 				resolve();
 			});
@@ -70,6 +96,12 @@ module.exports = class Elevation {
 			//console.log("Runter: " + this.meterRunter);
 			//console.log("Laenge: " + this.laenge);
 			console.log(this.distance);
+
+			$("#downHill").text("Bergab: " + this.meterRunter);
+            $("#upHill").text("Bergauf: " + this.meterRauf);
+            $("#maxHeight").text("Maximale Höhe: " + this.maxHeight);
+            $("#maxHeight").text("Maximale Höhe: " + this.maxHeight);
+
 		});
 	}
 
