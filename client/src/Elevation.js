@@ -11,7 +11,6 @@ module.exports = class Elevation {
 		this.maxHeight = -99999;
 		this.minHeight = 99999;
 		this.maxPoints = 0;
-		this.laenge = 0;
 		this.meterRauf = 0;
 		this.meterRunter = 0;
 		this.lastheight = -99999;
@@ -47,7 +46,6 @@ module.exports = class Elevation {
 			this.maxHeight = -99999;
 			this.minHeight = 99999;
 			this.lastheight = -99999;
-			this.laenge = 0;
 			this.meterRauf = 0;
 			this.meterRunter = 0;
 			this.latlongOld = null;
@@ -74,9 +72,6 @@ module.exports = class Elevation {
 		});
 
 		this.promise.then(() =>		{
-			this.ctx.lineWidth = 1;
-			this.ctx.lineCap = "round";
-			this.ctx.lineJoin = "round";
 			this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 			this.ctx.beginPath();
 			this.ctx.moveTo(0, this.canvas.height);
