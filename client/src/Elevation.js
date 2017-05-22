@@ -7,6 +7,7 @@ module.exports = class Elevation {
 	constructor(map) {
 		this.canvas = document.getElementById("elevation");
 		this.ctx = this.canvas.getContext("2d");
+		this.selection = false;
 		this.getSize();
 		this.heights = [];
 		this.maxHeight = -99999;
@@ -77,19 +78,8 @@ module.exports = class Elevation {
 		});
 
 		this.promise.then(() =>		{
-			this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-			this.ctx.beginPath();
-			this.ctx.moveTo(0, this.canvas.height);
-
-			var point = 0.0;
-			this.heights.forEach(() => {
-				this.ctx.lineTo(point * this.canvas.width / this.maxPoints, this.calcHeight(this.heights[point]));
-				point++;
-			});
-
-			this.ctx.lineTo(this.canvas.width, this.canvas.height);
-			this.ctx.closePath();
-			this.ctx.fill();
+			this.selection = true;
+			this.drawPoints();
 
 			$("#downHill").text("Bergab: " + Math.ceil(this.meterRunter) + " m");
 			$("#upHill").text("Bergauf: " + Math.ceil(this.meterRauf) + " m");
@@ -97,6 +87,22 @@ module.exports = class Elevation {
 			$("#minHeight").text("Minimale Höhe: " + Math.floor(this.minHeight) + " m");
 			$("#trackDistance").text("Strecke: " + Math.ceil(this.distance) + " m");
 		});
+	}
+
+	drawPoints()	{
+		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		this.ctx.beginPath();
+		this.ctx.moveTo(0, this.canvas.height);
+
+		let point = 0.0;
+		this.heights.forEach(() => {
+			this.ctx.lineTo(point * this.canvas.width / this.maxPoints, this.calcHeight(this.heights[point]));
+			point++;
+		});
+
+		this.ctx.lineTo(this.canvas.width, this.canvas.height);
+		this.ctx.closePath();
+		this.ctx.fill();
 	}
 
 	calcHeight(pHeight)	{
@@ -145,6 +151,10 @@ module.exports = class Elevation {
 
 		console.log("Breite-Style: " + this.canvas.width);
 		console.log("Höhe-Style: " + this.canvas.height);
+
+		if (this.selection !== false)		{
+			this.drawPoints();
+		}
 	}
 
 };
