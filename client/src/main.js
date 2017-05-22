@@ -1,12 +1,13 @@
 /**
  * Created by Philipp on 28.04.17.
  */
-
+let $ = require("jquery");
 const Map = require("./Map");
 const TrackList = require("./TrackList");
 const Elevation = require("./Elevation");
 
-let myMap = new Map();
-let elevation = new Elevation(myMap);
-let tracklist = new TrackList(myMap, elevation);
-
+$(document).ready(()=>{
+	let myMap = new Map();
+	let elevation = new Elevation(myMap);
+	let tracklist = new TrackList(myMap, elevation);
+});

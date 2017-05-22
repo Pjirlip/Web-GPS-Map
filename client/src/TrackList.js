@@ -79,7 +79,6 @@ module.exports = class TrackList {
 				item.addClass("activeTrack");
 				this.mymap.showTrackOnMap("http://localhost:8080/tracks/" + (i + 1));
 				this.activeItem = i;
-				console.log(this.activeItem);
 				this.elevation.draw("http://localhost:8080/tracks/" + (i + 1));
 			});
 			if (i === this.activeItem) {
@@ -119,7 +118,6 @@ module.exports = class TrackList {
 	}
 
 	nextPage() {
-		console.log(this);
 		if (this.page < this.maxPages) {
 			this.page += 1;
 			this.calcItems();
@@ -129,7 +127,6 @@ module.exports = class TrackList {
 	}
 
 	prevPage() {
-		console.log(this.page);
 		if (this.page !== 0) {
 			this.page -= 1;
 			this.calcItems();

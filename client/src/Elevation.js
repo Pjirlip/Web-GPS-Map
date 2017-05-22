@@ -7,6 +7,7 @@ module.exports = class Elevation {
 	constructor(map) {
 		this.canvas = document.getElementById("elevation");
 		this.ctx = this.canvas.getContext("2d");
+		this.getSize();
 		this.heights = [];
 		this.maxHeight = -99999;
 		this.minHeight = 99999;
@@ -19,7 +20,6 @@ module.exports = class Elevation {
 		this.latlongOld = null;
 		this.latLongNew = null;
 		this.markerGroup = this.mymap.leaflet.layerGroup();
-
 		this.redMarker = new this.mymap.leaflet.Icon({
 			iconUrl: "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
 			shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
@@ -27,6 +27,10 @@ module.exports = class Elevation {
 			iconAnchor: [12, 41],
 			popupAnchor: [1, -34],
 			shadowSize: [41, 41]
+		});
+
+		$(window).resize(() =>		{
+			this.getSize();
 		});
 
 		this.greenMarker = new this.mymap.leaflet.Icon({
@@ -51,6 +55,7 @@ module.exports = class Elevation {
 			this.latlongOld = null;
 			this.latLongNew = null;
 			this.distance = 0.0;
+			this.getSize();
 			$.getJSON(trackURL, (data) => {
 				data.features[0].geometry.coordinates.forEach((coord) => {
 					this.heights.push(coord[2]);
@@ -85,7 +90,6 @@ module.exports = class Elevation {
 			this.ctx.lineTo(this.canvas.width, this.canvas.height);
 			this.ctx.closePath();
 			this.ctx.fill();
-			console.log(this.distance);
 
 			$("#downHill").text("Bergab: " + Math.ceil(this.meterRunter) + " m");
 			$("#upHill").text("Bergauf: " + Math.ceil(this.meterRauf) + " m");
@@ -132,6 +136,15 @@ module.exports = class Elevation {
 			this.distance = this.distance + this.latlongOld.distanceTo(this.latLongNew);
 			this.latlongOld = this.latLongNew;
 		}
+	}
+
+	getSize()	{
+		let parent = $("#canvasContainer");
+		this.canvas.width = parent.width() * 2;
+		this.canvas.height = (parent.height() + 5) * 2;
+
+		console.log("Breite-Style: " + this.canvas.width);
+		console.log("Höhe-Style: " + this.canvas.height);
 	}
 
 };
