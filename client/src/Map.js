@@ -16,7 +16,6 @@ module.exports = class Map {
 			this.trackLayerGroup.clearLayers();
 			let trackLayer = this.leaflet.geoJSON(data, { attribution: "Track" });
 			this.trackLayerGroup.addLayer(trackLayer);
-
 			this.map.flyToBounds(trackLayer.getBounds(), { padding: [25, 25], duration: 0.7 });
 			this.trackLayerGroup.addTo(this.map);
 			$("#trackName").text(data.features[0].properties.name);

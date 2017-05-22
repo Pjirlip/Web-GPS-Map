@@ -46,20 +46,20 @@ module.exports = class Server {
          * add route for API List all tracks
          */
 		router.get("/tracks", function (request, responds) {
-			responds.jsonp(myTracklist.tracklist);
+			responds.json(myTracklist.tracklist);
 		});
 
         /**
          * add route for API List single track
          */
 		router.get("/tracks/:id", function (request, responds) {
-			responds.jsonp(myTracklist.trackobjects[request.params.id]);
+			responds.json(myTracklist.trackobjects[request.params.id]);
 		});
 
         /**
          * Bind router to server
          */
-		server.use("/", router);
+		server.use(router);
 
         /**
          * Start server on port
