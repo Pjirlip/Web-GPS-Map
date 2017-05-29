@@ -30,6 +30,7 @@ body {
 
 .flexcontainer {
   display: flex;
+  display: -webkit-flex;
   flex-direction: row;
   height: 100%;
   width: 100%;
@@ -39,6 +40,7 @@ body {
 
 #leftInnerContainer {
   display: flex;
+  display: -webkit-flex;
   order: 1;
   flex-grow: 1;
   flex-direction: column;
@@ -49,6 +51,7 @@ body {
 
 #map {
   display: flex;
+  display: -webkit-flex;
   order: 1;
   flex-shrink: 1;
   flex-grow: 1;
@@ -58,6 +61,7 @@ body {
 #infoContainer
 {
   display: flex;
+  display: -webkit-flex;
   order: 3;
   background-color: @flexControllContainerColor;
   height: 120px;
@@ -67,6 +71,7 @@ body {
 #list {
   order: 2;
   display: flex;
+  display: -webkit-flex;
   flex-direction: column;
   min-width: 30%;
   width: 450px;
@@ -76,6 +81,7 @@ body {
 
 #listItemsContainer {
   display: flex;
+  display: -webkit-flex;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -94,6 +100,7 @@ body {
 
 .listItem {
   display: flex;
+  display: -webkit-flex;
   align-items: center;
   flex-grow: 1;
   height: 35px;
@@ -166,6 +173,7 @@ button:hover:enabled {
 
 #listControl {
   display: flex;
+  display: -webkit-flex;
   order: 1;
   overflow: auto;
   height: 50px;
@@ -180,6 +188,7 @@ button:hover:enabled {
 #ButtonContainer, #PageindexContainer
 {
   display: flex;
+  display: -webkit-flex;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -187,6 +196,7 @@ button:hover:enabled {
 #spacer.listItem:nth-child(odd)
 {
   display: flex;
+  display: -webkit-flex;
   flex-shrink: 1;
   flex-grow: 100000;
   flex-basis: auto;
@@ -196,6 +206,7 @@ button:hover:enabled {
 #spacer.listItem:nth-child(even)
 {
   display: flex;
+  display: -webkit-flex;
   flex-shrink: 1;
   flex-grow: 100000;
   flex-basis: auto;
@@ -211,6 +222,7 @@ button:hover:enabled {
 #canvasContainer
 {
   display: flex;
+  display: -webkit-flex;
   padding: 0;
   order: 1;
   color: @listItemColorActive;
@@ -220,7 +232,7 @@ button:hover:enabled {
   min-width: 50%;
   margin: 0;
   border: 0;
-  padding-top: 5px;
+  //padding-top: 5px;
 }
 
 #elevation
@@ -233,6 +245,7 @@ button:hover:enabled {
 #trackInfo
 {
   display: flex;
+  display: -webkit-flex;
   order: 2;
   background-color: @listItemColor1 ;
   color: white;
@@ -260,6 +273,7 @@ button:hover:enabled {
 #infoHeader
 {
   display: flex;
+  display: -webkit-flex;
   order: 2;
   background-color: @listItemColorActive;
   color: white;

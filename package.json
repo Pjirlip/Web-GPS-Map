@@ -15,8 +15,8 @@
     "css:min": "lessc --clean-css client/styles/style.less dist/style.min.css",
     "js": "browserify ./client/src/main.js > dist/bundle.js",
     "js:min": "npm run js && babili dist/bundle.js > dist/bundle.min.js",
-    "build": "npm install && mkdir dist && npm run static:min && npm run css:min && npm run js:min",
-    "debug": "npm run clean:dist && npm run lint && mkdir dist && npm run static && npm run css && npm run js",
+    "build": "npm install && npm run lint && mkdir dist && npm run static:min && npm run css:min && npm run js:min",
+    "debug": "npm install && npm run clean:dist && npm run lint && mkdir dist && npm run static && npm run css && npm run js",
     "start:debug": "nodemon --exec npm run debug --ignore dist -e js,less,html"
   },
   "author": "Philipp Dippel & Dominik Wirtz",
