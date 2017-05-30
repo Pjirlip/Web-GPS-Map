@@ -77,9 +77,9 @@ module.exports = class TrackList {
 			item.bind("click", () => {
 				$("li").removeClass("activeTrack");
 				item.addClass("activeTrack");
-				this.mymap.showTrackOnMap("/tracks/" + (i + 1));
+				this.mymap.showTrackOnMap(this.tracksUrl + (i + 1));
 				this.activeItem = i;
-				this.elevation.draw("/tracks/" + (i + 1));
+				this.elevation.draw(this.tracksUrl + (i + 1));
 			});
 			if (i === this.activeItem) {
 				item.addClass("activeTrack");
@@ -94,9 +94,10 @@ module.exports = class TrackList {
 	//Läd die Daten und Ruft Add Element für alle Listenelemente auf
 	loadTrackListFromAPI() {
 		$.get("/tracks", (data) => {
-			if (data instanceof Array) {
-				this.tracksArray = data;
-				this.lastItem = data.length;
+			if (data.list instanceof Array) {
+				this.tracksArray = data.list;
+				this.lastItem = data.list.length;
+				this.tracksUrl = data.tracks.href;
 			}
 			this.addElementsToList();
 		});

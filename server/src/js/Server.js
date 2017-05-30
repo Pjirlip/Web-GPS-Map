@@ -31,16 +31,8 @@ module.exports = class Server {
 			if (!Number.isInteger(port) && !(port >= 1 && port <= 65535)) {
 				port = 8080;
 			}
-
 			return port;
 		}
-
-        /**
-         * add route for Homepage
-         */
-		router.get("/", function (request, responds) {
-			responds.sendFile("index.html", options);
-		});
 
         /**
          * add route for API List all tracks
