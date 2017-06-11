@@ -1,5 +1,10 @@
 /**
- * Created by dominik.wirtz on 27.04.17.
+ * webGPSmap
+ * Webentwicklung Hausarbeit Gruppenarbeit Gruppe 1
+ *
+ * Webserver
+ *
+ * Created by Dominik Wirtz & Philipp Dippel
  */
 
 module.exports = class ListTracks {

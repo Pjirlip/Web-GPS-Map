@@ -1,5 +1,21 @@
 /**
- * Created by Philipp on 11.05.17.
+ * webGPSmap
+ * Webentwicklung Hausarbeit Gruppenarbeit Gruppe 1
+ *
+ * Webclient
+ *
+ * Created by Dominik Wirtz & Philipp Dippel
+ *
+ *
+ *
+ *
+ * Main Elevation-Map Class for Tracks.
+ * Draw height information on Canvas for selected Track and also calculates:
+ * - the max Height
+ * - the min Height
+ * - the distance traveled upwards
+ * - the distance traveled downwards
+ * - the absolute traveled distance
  */
 let $ = require("jquery");
 
@@ -21,6 +37,7 @@ module.exports = class Elevation {
 		this.latlongOld = null;
 		this.latLongNew = null;
 		this.markerGroup = this.mymap.leaflet.layerGroup();
+
 		this.redMarker = new this.mymap.leaflet.Icon({
 			iconUrl: "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
 			shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
@@ -30,20 +47,26 @@ module.exports = class Elevation {
 			shadowSize: [41, 41]
 		});
 
+        this.greenMarker = new this.mymap.leaflet.Icon({
+            iconUrl: "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+            shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        //Redraw Canvas if size of Window changed
 		$(window).resize(() =>		{
 			this.getSize();
 		});
 
-		this.greenMarker = new this.mymap.leaflet.Icon({
-			iconUrl: "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
-			shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-			iconSize: [25, 41],
-			iconAnchor: [12, 41],
-			popupAnchor: [1, -34],
-			shadowSize: [41, 41]
-		});
+
 	}
 
+	/**
+	 * Main Function for drawing the Canvas. Loads the selected track information from REST API and calculates track metrics.
+	 */
 	draw(trackURL)	{
 		this.promise = new Promise((resolve) => {
 			this.heights = [];
@@ -89,6 +112,7 @@ module.exports = class Elevation {
 		});
 	}
 
+	//Draws complete Path with all point pnformations.
 	drawPoints()	{
 		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		this.ctx.beginPath();
@@ -105,10 +129,12 @@ module.exports = class Elevation {
 		this.ctx.fill();
 	}
 
+	//Calculate drawing-height for point depending on size of the canvas
 	calcHeight(pHeight)	{
 		return this.canvas.height - ((pHeight - this.minHeight) / (this.maxHeight - this.minHeight) * this.canvas.height);
 	}
 
+	//Calculates Information for traveled distance upwards and downwards
 	calcRaufRunter(hight) {
 		if (this.lastheight === -99999) {
 			this.lastheight = hight;
@@ -123,6 +149,7 @@ module.exports = class Elevation {
 		}
 	}
 
+	//Saves min and max Height of selected Track
 	setMinMax(minmaxHoehe) {
 		if (minmaxHoehe > this.maxHeight)				{
 			this.maxHeight = minmaxHoehe;
@@ -132,6 +159,7 @@ module.exports = class Elevation {
 		}
 	}
 
+	//Function for calculating the traveled distance
 	calcDistance(lat, long)	{
 		if (this.latlongOld === null)		{
 			this.latlongOld = this.mymap.leaflet.latLng(lat, long);
@@ -144,13 +172,11 @@ module.exports = class Elevation {
 		}
 	}
 
+	//Get container size of the canvas element and set the size of the canvas itself
 	getSize()	{
 		let parent = $("#canvasContainer");
 		this.canvas.width = parent.width() * 2;
 		this.canvas.height = (parent.height() + 5) * 2;
-
-		console.log("Breite-Style: " + this.canvas.width);
-		console.log("Höhe-Style: " + this.canvas.height);
 
 		if (this.selection !== false)		{
 			this.drawPoints();

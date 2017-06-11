@@ -1,7 +1,18 @@
+/**
+ * webGPSmap
+ * Webentwicklung Hausarbeit Gruppenarbeit Gruppe 1
+ *
+ * Webclient
+ *
+ * Created by Dominik Wirtz & Philipp Dippel
+ */
 let $ = require("jquery");
 module.exports = class Map {
 
 	constructor()	{
+		/**
+		 *Create Map, bind to "map" Div and add TitleLayer
+		 */
 		this.leaflet = require("leaflet");
 		this.map = this.leaflet.map("map").setView([49.76425, 6.64039], 13);
 		this.trackLayerGroup = new this.leaflet.LayerGroup();
@@ -11,6 +22,9 @@ module.exports = class Map {
 		}).addTo(this.map);
 	}
 
+    /**
+	 * Add track to map for selected list entry.
+     */
 	showTrackOnMap(trackURL) {
 		$.getJSON(trackURL, (data) => {
 			this.trackLayerGroup.clearLayers();

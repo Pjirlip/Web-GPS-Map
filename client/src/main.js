@@ -1,5 +1,10 @@
 /**
- * Created by Philipp on 28.04.17.
+ * webGPSmap
+ * Webentwicklung Hausarbeit Gruppenarbeit Gruppe 1
+ *
+ * Webclient
+ *
+ * Created by Dominik Wirtz & Philipp Dippel
  */
 let $ = require("jquery");
 const Map = require("./Map");
