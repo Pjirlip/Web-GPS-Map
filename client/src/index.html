@@ -12,46 +12,35 @@
 </head>
 
 <body>
-
-<main class="flexcontainer">
-    <div id="leftInnerContainer">
+    <button id="toggleButton"> Toggle </button>
     <div id="map"></div>
-        <div id="infoHeader">
-            <span id="trackName"> Trier </span>
-            <span id="trackDistance"> Distanz: - m </span>
-        </div>
     <div id="infoContainer">
+        <div id="infoheader">
+            <div id="trackName"> Trier </div>
+            <div id="trackDistance"> Distanz: - m </div>
+        </div>
         <div id="canvasContainer">
         <canvas id="elevation"> </canvas>
         </div>
         <div id="trackInfo">
-            <span id="minHeight"> Minimale Höhe: - m </span>
-            <span id="upHill"> Bergauf: - m </span>
-            <span id="maxHeight"> Maximale Höhe: - m </span>
-            <span id="downHill"> Bergab: - m </span>
+            <p id="minHeight"> Minimale Höhe: - m </p>
+            <p id="upHill"> Bergauf: - m </p>
+            <p id="maxHeight"> Maximale Höhe: - m </p>
+            <p id="downHill"> Bergab: - m </p>
         </div>
     </div>
-    </div>
-
-
 
     <div id="list">
         <div id="listControl">
-        <div id="ButtonContainer">
-            <button id="buttonBack" href="#"><</button> <button id="buttonNext" href="#" onclick="">></button>
-        </div>
-        <div id="PageindexContainer">
+            <button id="buttonBack" href="#"><</button>
+            <button id="buttonNext" href="#" onclick="">></button>
             <p id="Pageindex"> PageID</p>
-        </div>
-
         </div>
         <ul id="listItemsContainer">
 
         </ul>
     </div>
 
-
-</main>
 
 <script src="bundle.js"></script>
 </body>

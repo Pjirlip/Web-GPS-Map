@@ -104,7 +104,10 @@ module.exports = class TrackList {
 			}
 		}
 		if ($("li").length < this.maxItemsPossible)			{
-			this.itemsContainer.append("<li class='listItem' id='spacer'> </li>"); //Add spacer item on last Page.
+			let index = this.maxItemsPossible - $("li").length;
+			for (let i = 0; i < index; i++) {
+				this.itemsContainer.append("<li class='listItem spacerelement'><p> &nbsp; </p></li>"); //Add spacer item on last Page.
+			}
 		}
 
 		this.checkButtons();
