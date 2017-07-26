@@ -1,0 +1,39 @@
+{
+  "name": "webGPSmap",
+  "version": "0.0.2",
+  "description": "View GEOJSON fiels on Openstreetmap",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint -c .eslintrc.json --ext .js ./",
+    "static": "cp client/src/index.html dist && cp -r client/assets/. dist",
+    "static:min": "npm run static && place dist/index.html style.css style.min.css && place dist/index.html bundle.js bundle.min.js",
+    "clean": "npm run clean:dist && rm -rf node_modules",
+    "clean:dist": "rm -rf dist",
+    "css": "lessc client/styles/style.less dist/style.css",
+    "css:min": "lessc --clean-css client/styles/style.less dist/style.min.css",
+    "js": "browserify ./client/src/main.js > dist/bundle.js",
+    "js:min": "npm run js && babili dist/bundle.js > dist/bundle.min.js",
+    "build": "npm install && npm run lint && mkdir dist && npm run static:min && npm run css:min && npm run js:min",
+    "debug": "npm install && npm run clean:dist && npm run lint && mkdir dist && npm run static && npm run css && npm run js",
+    "start:debug": "nodemon --exec npm run debug --ignore dist -e js,less,html"
+  },
+  "author": "Philipp Dippel & Dominik Wirtz",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "jquery": "^3.2.1",
+    "leaflet": "^1.0.3",
+    "leaflet.elevation": "0.0.3"
+  },
+  "devDependencies": {
+    "babili": "0.0.12",
+    "browserify": "^14.3.0",
+    "eslint": "^3.19.0",
+    "less": "^2.7.2",
+    "less-plugin-clean-css": "^1.5.1",
+    "nodemon": "^1.11.0",
+    "place": "^1.2.1"
+  }
+}

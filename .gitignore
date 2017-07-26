@@ -1,0 +1,22 @@
+
+# Created by https://www.gitignore.io/api/macos,webstorm
+
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+### WebStorm ###
+.idea/
+
+### Build ###
+node_modules/
+dist/
+
+### res ###
+Web-Entwicklung - HausarbeitSS17.pdf
+ref/
+
