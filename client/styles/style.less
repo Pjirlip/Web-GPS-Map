@@ -7,7 +7,6 @@
 
 @small-screen: ~"(max-width : 600px)";
 
-
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   height: 100vh;
@@ -177,11 +176,67 @@ body {
     grid-template-columns: 1fr 100px;
     grid-template-areas: "infoheader infoheader" "canvas trackinfos";
 
-
     .trackInfoIcon {
       max-height: 100%;
       max-width: 100%;
       width: 80%;
+      position: relative;
+
+      &:hover {
+        .arrowContextMenu {
+          display: grid;
+          animation: fade-in .3s linear 1, move-up .3s linear 1;
+
+          @keyframes fade-in {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
+          }
+
+          @keyframes move-up {
+            from {
+              top: -30px
+            }
+            to {
+              top: -42px
+            }
+          }
+
+        }
+
+      }
+    }
+
+    .arrowContextMenu {
+      position: absolute;
+      left: calc(~"-100px + 50%");
+      top: -40px;
+      z-index: 300000;
+      display: none;
+      justify-content: center;
+      align-content: center;
+      width: 200px;
+      height: 35px;
+      border-radius: 5px;
+      background: rgba(0, 0, 0, 0.85);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+      color: white;
+
+      &:before {
+        border-top: 7px solid rgba(0, 0, 0, 0.85);
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        bottom: -7px;
+        left: 50%;
+        content: "";
+        display: block;
+        margin-left: -7px;
+        position: absolute;
+      }
+
     }
 
     #infoheader {
@@ -196,10 +251,8 @@ body {
       grid-gap: 0 15px;
       padding-right: 5px;
 
-
       @media @small-screen {
         max-width: 100vw;
-        grid-template-columns: 1fr 40px 20px;
         padding-right: 0;
       }
 
@@ -207,8 +260,8 @@ body {
         grid-area: trackDistanceIcon;
         fill: white;
         align-self: center;
-      }
 
+      }
 
       #trackName {
         padding-left: 10px;
@@ -226,6 +279,7 @@ body {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+
       }
     }
 
@@ -260,7 +314,6 @@ body {
       grid-template-rows: 1fr 1fr 1fr 1fr;
       grid-template-areas: "maxHeight maxHIcon" "upHill upHIcon" "downHill downHIcon" "minHeight minHIcon";
       text-overflow: ellipsis;
-      overflow: hidden;
       align-items: center;
       min-width: 0;
       justify-items: flex-end;

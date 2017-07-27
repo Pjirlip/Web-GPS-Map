@@ -7,46 +7,65 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
           integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
           crossorigin=""/>
-    <link rel="icon" href="../assets/favicon.ico"/>
-    <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
-    <link rel="apple-touch-icon-precomposed" href="mapmarker-apple.svg" />
+    <link rel="icon" href="favicon.ico"/>
+    <link rel="icon" type="image/png" href="favicon.png" sizes="32x32">
+    <link rel="apple-touch-icon-precomposed" href="mapmarker-apple.svg"/>
     <title>GPS Map</title>
 </head>
 
 <body>
-    <button id="toggleButton"> Toggle </button>
-    <div id="map"></div>
-    <div id="infoContainer">
-        <div id="infoheader">
-            <div id="trackName"> Trier </div>
-            </svg> <svg id="trackDistanceIcon" class="trackInfoIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M508.485 247.515l-99.03-99.029c-7.56-7.56-20.485-2.206-20.485 8.485V228H123.03v-71.03c0-10.691-12.926-16.045-20.485-8.485l-99.03 99.029c-4.686 4.686-4.686 12.284 0 16.971l99.03 99.029c7.56 7.56 20.485 2.206 20.485-8.485V284h265.941v71.03c0 10.691 12.926 16.045 20.485 8.485l99.03-99.029c4.686-4.687 4.686-12.285-.001-16.971z"/></svg>
-            <div id="trackDistance"> - m </div>
-        </div>
-        <div id="canvasContainer">
-        <canvas id="elevation"> </canvas>
-        </div>
-        <div id="trackInfo">
-            <object id="maxHIcon" class="trackInfoIcon" data="arrow-to-top.svg" type="image/svg+xml"> </object>
-            <p id="maxHeight"> - m </p>
-            <object id="upHIcon" class="trackInfoIcon" data="arrow-uphill.svg" type="image/svg+xml"> </object>
-            <p id="upHill"> - m </p>
-            <object id="dowHIcon" class="trackInfoIcon" data="arrow-downhill.svg" type="image/svg+xml"> </object>
-            <p id="downHill"> - m </p>
-            <object id="minHIcon" class="trackInfoIcon" data="arrow-to-bottom.svg" type="image/svg+xml"> </object>
-            <p id="minHeight"> - m </p>
-        </div>
-    </div>
+<button id="toggleButton"> Toggle</button>
+<div id="map"></div>
 
-    <div id="list">
-        <div id="listControl">
-            <button id="buttonBack" href="#"><</button>
-            <button id="buttonNext" href="#" onclick="">></button>
-            <p id="Pageindex"> PageID</p>
-        </div>
-        <ul id="listItemsContainer">
 
-        </ul>
+<div id="infoContainer">
+    <div id="infoheader">
+        <div id="trackName"> Trier</div>
+        <div id="trackDistanceIcon" class="trackInfoIcon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M508.485 247.515l-99.03-99.029c-7.56-7.56-20.485-2.206-20.485 8.485V228H123.03v-71.03c0-10.691-12.926-16.045-20.485-8.485l-99.03 99.029c-4.686 4.686-4.686 12.284 0 16.971l99.03 99.029c7.56 7.56 20.485 2.206 20.485-8.485V284h265.941v71.03c0 10.691 12.926 16.045 20.485 8.485l99.03-99.029c4.686-4.687 4.686-12.285-.001-16.971z"/>
+            </svg>
+            <div class="arrowContextMenu">Gesammtstrecke</div>
+        </div>
+        <div id="trackDistance"> - m</div>
     </div>
+    <div id="canvasContainer">
+        <canvas id="elevation"></canvas>
+    </div>
+    <div id="trackInfo">
+        <div id="maxHIcon" class="trackInfoIcon">
+            <object data="arrow-to-top.svg" type="image/svg+xml"></object>
+            <div class="arrowContextMenu">Höchster Punkt</div>
+        </div>
+        <p id="maxHeight"> - m </p>
+        <div id="upHIcon" class="trackInfoIcon">
+            <object data="arrow-uphill.svg" type="image/svg+xml"></object>
+            <div class="arrowContextMenu">Strecke aufwärts</div>
+        </div>
+        <p id="upHill"> - m </p>
+        <div id="dowHIcon" class="trackInfoIcon">
+            <object data="arrow-downhill.svg" type="image/svg+xml"></object>
+            <div class="arrowContextMenu">Strecke abwärts</div>
+        </div>
+        <p id="downHill"> - m </p>
+        <div id="minHIcon" class="trackInfoIcon">
+            <object data="arrow-to-bottom.svg" type="image/svg+xml"></object>
+            <div class="arrowContextMenu">Tiefster Punkt</div>
+        </div>
+        <p id="minHeight"> - m </p>
+    </div>
+</div>
+
+<div id="list">
+    <div id="listControl">
+        <button id="buttonBack" href="#"><</button>
+        <button id="buttonNext" href="#" onclick="">></button>
+        <p id="Pageindex"> PageID</p>
+    </div>
+    <ul id="listItemsContainer">
+
+    </ul>
+</div>
 
 
 <script src="bundle.js"></script>
