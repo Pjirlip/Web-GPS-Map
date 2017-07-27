@@ -7,6 +7,7 @@
 
 @small-screen: ~"(max-width : 600px)";
 
+
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   height: 100vh;
@@ -186,19 +187,15 @@ body {
     #infoheader {
       grid-area: infoheader;
       display: grid;
-      grid-template-columns: 1fr 80px 20px;
+      grid-template-columns: 1fr 40px 20px;
       grid-template-areas: "trackname trackdistance trackDistanceIcon";
       align-content: center;
       background: @ControllContainerColor;
       color: white;
       min-width: 0;
-      grid-gap: 0 10px;
+      grid-gap: 0 15px;
       padding-right: 5px;
 
-      svg
-      {
-        fill: white;
-      }
 
       @media @small-screen {
         max-width: 100vw;
@@ -207,7 +204,7 @@ body {
 
       #trackDistanceIcon {
         grid-area: trackDistanceIcon;
-
+        fill: white;
       }
 
 
@@ -217,6 +214,7 @@ body {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        max-width: calc(~"100% - 60px");
 
         @media @small-screen {
           max-width: 320px;
@@ -224,7 +222,6 @@ body {
       }
 
       #trackDistance {
-        padding-right: 10px;
         grid-area: trackdistance;
         justify-self: end;
         white-space: nowrap;
@@ -251,6 +248,7 @@ body {
     #trackInfo {
       @media @small-screen {
         display: none;
+
       }
 
       grid-area: trackinfos;

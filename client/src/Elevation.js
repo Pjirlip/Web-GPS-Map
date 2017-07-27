@@ -106,7 +106,7 @@ module.exports = class Elevation {
 			$("#upHill").text(Math.ceil(this.meterRauf) + " m");
 			$("#maxHeight").text(Math.ceil(this.maxHeight) + " m");
 			$("#minHeight").text(Math.floor(this.minHeight) + " m");
-			$("#trackDistance").text("Strecke: " + Math.ceil(this.distance) + " m");
+			$("#trackDistance").text(Math.ceil(this.distance) + " m");
 		});
 	}
 
