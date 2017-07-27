@@ -34,6 +34,8 @@ module.exports = class Elevation {
 		this.lastheight = -99999;
 		this.mymap = map;
 		this.distance = 0.0;
+		this.maxdist = 0.0;
+		this.mindist = 100000.0;
 		this.latlongOld = null;
 		this.latLongNew = null;
 		this.markerGroup = this.mymap.leaflet.layerGroup();
@@ -101,12 +103,14 @@ module.exports = class Elevation {
 		this.promise.then(() =>		{
 			this.selection = true;
 			this.drawPoints();
-
 			$("#downHill").text("Bergab: " + Math.ceil(this.meterRunter) + " m");
 			$("#upHill").text("Bergauf: " + Math.ceil(this.meterRauf) + " m");
 			$("#maxHeight").text("Maximale Höhe: " + Math.ceil(this.maxHeight) + " m");
 			$("#minHeight").text("Minimale Höhe: " + Math.floor(this.minHeight) + " m");
 			$("#trackDistance").text("Strecke: " + Math.ceil(this.distance) + " m");
+
+			console.log("maxdist" + this.maxdist);
+			console.log("mindist" + this.mindist);
 		});
 	}
 
