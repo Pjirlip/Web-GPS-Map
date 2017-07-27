@@ -102,10 +102,10 @@ module.exports = class Elevation {
 			this.selection = true;
 			this.drawPoints();
 
-			$("#downHill").text("Bergab: " + Math.ceil(this.meterRunter) + " m");
-			$("#upHill").text("Bergauf: " + Math.ceil(this.meterRauf) + " m");
-			$("#maxHeight").text("Maximale Höhe: " + Math.ceil(this.maxHeight) + " m");
-			$("#minHeight").text("Minimale Höhe: " + Math.floor(this.minHeight) + " m");
+			$("#downHill").text(Math.ceil(this.meterRunter) + " m");
+			$("#upHill").text(Math.ceil(this.meterRauf) + " m");
+			$("#maxHeight").text(Math.ceil(this.maxHeight) + " m");
+			$("#minHeight").text(Math.floor(this.minHeight) + " m");
 			$("#trackDistance").text("Strecke: " + Math.ceil(this.distance) + " m");
 		});
 	}

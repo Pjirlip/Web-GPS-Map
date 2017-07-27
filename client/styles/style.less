@@ -79,7 +79,6 @@ body {
         font-size: large;
         padding: 0;
         margin: 0;
-
       }
 
     }
@@ -174,22 +173,35 @@ body {
     grid-area: info;
     display: grid;
     grid-template-rows: 30px 1fr;
-    grid-template-columns: 4fr 200px;
+    grid-template-columns: 1fr 100px;
     grid-template-areas: "infoheader infoheader" "canvas trackinfos";
+
+
+    .trackInfoIcon {
+      max-height: 100%;
+      max-width: 100%;
+      width: 80%;
+    }
 
     #infoheader {
       grid-area: infoheader;
       display: grid;
-      grid-template-columns: 4fr 200px;
-      grid-template-areas: "trackname trackdistance";
+      grid-template-columns: 1fr 80px 20px;
+      grid-template-areas: "trackname trackdistance trackDistanceIcon";
       align-content: center;
       background: @ControllContainerColor;
       color: white;
       min-width: 0;
+      grid-gap: 0 10px;
+      padding-right: 5px;
 
       @media @small-screen {
         max-width: 100vw;
         grid-template-columns: 1fr 1fr;
+      }
+
+      #trackDistanceIcon {
+        grid-area: trackDistanceIcon;
       }
 
       #trackName {
@@ -236,12 +248,16 @@ body {
 
       grid-area: trackinfos;
       display: grid;
+      grid-template-columns: 1fr 20px;
       grid-template-rows: 1fr 1fr 1fr 1fr;
-      grid-template-areas: "minHeight" "upHill" "maxHeight" "downHill";
+      grid-template-areas: "maxHeight maxHIcon" "upHill upHIcon" "downHill downHIcon" "minHeight minHIcon";
       text-overflow: ellipsis;
       overflow: hidden;
       align-items: center;
       min-width: 0;
+      justify-items: flex-end;
+      grid-gap: 0 10px;
+      padding-right: 10px;
 
       p {
         padding: 0;
@@ -251,20 +267,38 @@ body {
         white-space: nowrap;
       }
 
-      #minHeight {
-        grid-area: minHeight;
-      }
-
-      #upHill {
-        grid-area: upHill;
+      #maxHIcon {
+        grid-area: maxHIcon;
+        max-height: 100%;
+        max-width: 100%;
       }
 
       #maxHeight {
         grid-area: maxHeight;
       }
 
+      #upHIcon {
+        grid-area: upHIcon;
+      }
+
+      #upHill {
+        grid-area: upHill;
+      }
+
+      #dowHIcon {
+        grid-area: downHIcon;
+      }
+
       #downHill {
         grid-area: downHill;
+      }
+
+      #minHIcon {
+        grid-area: minHIcon;
+      }
+
+      #minHeight {
+        grid-area: minHeight;
       }
 
     }

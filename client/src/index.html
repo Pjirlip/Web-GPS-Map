@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, inital-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
           integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
           crossorigin=""/>
     <link rel="icon" href="../assets/favicon.ico"/>
     <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
+    <link rel="apple-touch-icon-precomposed" href="mapmarker-apple.svg" />
     <title>GPS Map</title>
 </head>
 
@@ -18,16 +19,21 @@
     <div id="infoContainer">
         <div id="infoheader">
             <div id="trackName"> Trier </div>
+            <object id="trackDistanceIcon" class="trackInfoIcon" data="arrow-to-top.svg" type="image/svg+xml"> </object>
             <div id="trackDistance"> Distanz: - m </div>
         </div>
         <div id="canvasContainer">
         <canvas id="elevation"> </canvas>
         </div>
         <div id="trackInfo">
-            <p id="minHeight"> Minimale Höhe: - m </p>
-            <p id="upHill"> Bergauf: - m </p>
-            <p id="maxHeight"> Maximale Höhe: - m </p>
-            <p id="downHill"> Bergab: - m </p>
+            <object id="maxHIcon" class="trackInfoIcon" data="arrow-to-top.svg" type="image/svg+xml"> </object>
+            <p id="maxHeight"> - m </p>
+            <object id="upHIcon" class="trackInfoIcon" data="arrow-uphill.svg" type="image/svg+xml"> </object>
+            <p id="upHill"> - m </p>
+            <object id="dowHIcon" class="trackInfoIcon" data="arrow-downhill.svg" type="image/svg+xml"> </object>
+            <p id="downHill"> - m </p>
+            <object id="minHIcon" class="trackInfoIcon" data="arrow-to-bottom.svg" type="image/svg+xml"> </object>
+            <p id="minHeight"> - m </p>
         </div>
     </div>
 
