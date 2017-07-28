@@ -27,6 +27,8 @@ module.exports = class TrackList {
 		this.elevation = elevation;
 		this.mobileMenu = $("#toggleButton");
 		this.trackInfoContainer = $("#list");
+		this.simplifyCheckBox = $("#checkbox");
+		this.simplifySlider = $("#slider");
 
 		this.loadTrackListFromAPI(); //Loads all Track Names from REST API / Main entry Point
 
@@ -38,8 +40,8 @@ module.exports = class TrackList {
 		});
 		this.prevButton.prop("disabled", true);
 
-		this.mobileMenu.click(() =>	{
-			if (this.trackInfoContainer.css("display") === "none")		{
+		this.mobileMenu.click(() => {
+			if (this.trackInfoContainer.css("display") === "none")			{
 				this.trackInfoContainer.css("display", "grid");
 				this.update();
 			}
@@ -55,17 +57,29 @@ module.exports = class TrackList {
 			if ($(window).width() >= 600)			{
 				this.trackInfoContainer.css("display", "grid");
 			}
-			else {
+			else			{
 				this.trackInfoContainer.css("display", "none");
 			}
 			this.update();
+		});
+
+		this.simplifyCheckBox.change(() => {
+			if (this.activeItem !== -1)			{
+				this.elevation.draw(this.tracksUrl + String(this.activeItem + 1), this.simplifySlider.val(), this.simplifyCheckBox.is(":checked"));
+			}
+		});
+
+		this.simplifySlider.change(() => {
+			if (this.activeItem !== -1 && this.simplifyCheckBox.is(":checked"))			{
+				this.elevation.draw(this.tracksUrl + String(this.activeItem + 1), this.simplifySlider.val(), this.simplifyCheckBox.is(":checked"));
+			}
 		});
 	}
 
 	update()	{
 		this.calcItems();
 		this.calcActivePage();
-		if (this.page !== this.activeItemPage)			{
+		if (this.page !== this.activeItemPage)		{
 			this.page = this.activeItemPage;
 		}
 		this.addElementsToList();
@@ -119,7 +133,7 @@ module.exports = class TrackList {
 				item.addClass("activeTrack");
 				this.mymap.showTrackOnMap(this.tracksUrl + (i + 1));
 				this.activeItem = i;
-				this.elevation.draw(this.tracksUrl + (i + 1));
+				this.elevation.draw(this.tracksUrl + (i + 1), this.simplifySlider.val(), this.simplifyCheckBox.is(":checked"));
 				if ($(window).width() < 600)				{
 					this.trackInfoContainer.css("display", "none");
 				}

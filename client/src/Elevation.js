@@ -66,7 +66,7 @@ module.exports = class Elevation {
 	/**
 	 * Main Function for drawing the Canvas. Loads the selected track information from REST API and calculates track metrics.
 	 */
-	draw(trackURL)	{
+	draw(trackURL, tolerance, minified)	{
 		this.promise = new Promise((resolve) => {
 			this.heights = [];
 			this.maxPoints = 0;
@@ -109,8 +109,9 @@ module.exports = class Elevation {
 
 		this.promise.then(() =>		{
 			this.selection = true;
-			this.pointsArray = simplify(this.pointsArray, 5, true);
-			console.log(this.pointsArray);
+			if (minified)			{
+				this.pointsArray = simplify(this.pointsArray, tolerance, true);
+			}
 			this.drawPointArray();
 
 			$("#downHill").text(Math.ceil(this.meterRunter) + " m");

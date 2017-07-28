@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" xmlns="http://www.w3.org/2000/svg">
+<html lang="de" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -30,6 +30,12 @@
         <div id="trackDistance"> - m</div>
     </div>
     <div id="canvasContainer">
+        <div id="checkBoxContainer">
+            <form>
+            <input title="Glättung Höhenprofil" id="checkbox" type="checkbox" name="checkSimplify"> <p id="glaettentext"> Höhenprofil Glätten </p>
+            <input title="Skalierungsfaktor" id="slider" type="range" min="0" max="10">
+            </form>
+        </div>
         <canvas id="elevation"></canvas>
     </div>
     <div id="trackInfo">
