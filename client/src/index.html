@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/2000/svg">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -9,7 +9,7 @@
           crossorigin=""/>
     <link rel="icon" href="favicon.ico"/>
     <link rel="icon" type="image/png" href="favicon.png" sizes="32x32">
-    <link rel="apple-touch-icon-precomposed" href="mapmarker-apple.svg"/>
+    <link rel="apple-touch-icon-precomposed" href="mapmarker-apple.png"/>
     <title>GPS Map</title>
 </head>
 
@@ -23,7 +23,7 @@
         <div id="trackName"> Trier</div>
         <div id="trackDistanceIcon" class="trackInfoIcon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path d="M508.485 247.515l-99.03-99.029c-7.56-7.56-20.485-2.206-20.485 8.485V228H123.03v-71.03c0-10.691-12.926-16.045-20.485-8.485l-99.03 99.029c-4.686 4.686-4.686 12.284 0 16.971l99.03 99.029c7.56 7.56 20.485 2.206 20.485-8.485V284h265.941v71.03c0 10.691 12.926 16.045 20.485 8.485l99.03-99.029c4.686-4.687 4.686-12.285-.001-16.971z"/>
+                <path d="M508.485 247.515l-99.03-99.029c-7.56-7.56-20.485-2.206-20.485 8.485V228H123.03v-71.03c0-10.691-12.926-16.045-20.485-8.485l-99.03 99.029c-4.686 4.686-4.686 12.284 0 16.971l99.03 99.029c7.56 7.56 20.485 2.206 20.485-8.485V284h265.941v71.03c0 10.691 12.926 16.045 20.485 8.485l99.03-99.029c4.686-4.687 4.686-12.285-.001-16.971z"></path>
             </svg>
             <div class="arrowContextMenu">Gesammtstrecke</div>
         </div>
@@ -34,22 +34,34 @@
     </div>
     <div id="trackInfo">
         <div id="maxHIcon" class="trackInfoIcon">
-            <object data="arrow-to-top.svg" type="image/svg+xml"></object>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                <path d="M35.5 279.9l148-148.4c4.7-4.7 12.3-4.7 17 0l148 148.4c4.7 4.7 4.7 12.3 0 17l-19.6 19.6c-4.8 4.8-12.5 4.7-17.1-.2L218 219.2V468c0 6.6-5.4 12-12 12h-28c-6.6 0-12-5.4-12-12V219.2l-93.7 97.1c-4.7 4.8-12.4 4.9-17.1.2l-19.6-19.6c-4.8-4.7-4.8-12.3-.1-17zM12 84h360c6.6 0 12-5.4 12-12V44c0-6.6-5.4-12-12-12H12C5.4 32 0 37.4 0 44v28c0 6.6 5.4 12 12 12z"></path>
+            </svg>
             <div class="arrowContextMenu">Höchster Punkt</div>
         </div>
         <p id="maxHeight"> - m </p>
         <div id="upHIcon" class="trackInfoIcon">
-            <object data="arrow-uphill.svg" type="image/svg+xml"></object>
+            <svg viewBox="0 0 448 512" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <g transform="matrix(0.707107,0.707107,-0.707107,0.707107,246.595,-83.3832)">
+                <path d="M34.9,289.5L12.7,267.3C3.3,257.9 3.3,242.7 12.7,233.4L207,39C216.4,29.6 231.6,29.6 240.9,39L435.2,233.3C444.6,242.7 444.6,257.9 435.2,267.2L413,289.4C403.5,298.9 388,298.7 378.7,289L264,168.6L264,456C264,469.3 253.3,480 240,480L208,480C194.7,480 184,469.3 184,456L184,168.6L69.2,289.1C59.9,298.9 44.4,299.1 34.9,289.5L34.9,289.5Z"></path>
+                </g>
+            </svg>
             <div class="arrowContextMenu">Strecke aufwärts</div>
         </div>
         <p id="upHill"> - m </p>
         <div id="dowHIcon" class="trackInfoIcon">
-            <object data="arrow-downhill.svg" type="image/svg+xml"></object>
+            <svg viewBox="0 0 448 512" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <g transform="matrix(0.707107,-0.707107,-0.707107,-0.707107,246.595,606.735)">
+                <path d="M34.9,289.5L12.7,267.3C3.3,257.9 3.3,242.7 12.7,233.4L207,39C216.4,29.6 231.6,29.6 240.9,39L435.2,233.3C444.6,242.7 444.6,257.9 435.2,267.2L413,289.4C403.5,298.9 388,298.7 378.7,289L264,168.6L264,456C264,469.3 253.3,480 240,480L208,480C194.7,480 184,469.3 184,456L184,168.6L69.2,289.1C59.9,298.9 44.4,299.1 34.9,289.5L34.9,289.5Z" ></path>
+                </g>
+            </svg>
             <div class="arrowContextMenu">Strecke abwärts</div>
         </div>
         <p id="downHill"> - m </p>
         <div id="minHIcon" class="trackInfoIcon">
-            <object data="arrow-to-bottom.svg" type="image/svg+xml"></object>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                <path d="M348.5 232.1l-148 148.4c-4.7 4.7-12.3 4.7-17 0l-148-148.4c-4.7-4.7-4.7-12.3 0-17l19.6-19.6c4.8-4.8 12.5-4.7 17.1.2l93.7 97.1V44c0-6.6 5.4-12 12-12h28c6.6 0 12 5.4 12 12v248.8l93.7-97.1c4.7-4.8 12.4-4.9 17.1-.2l19.6 19.6c4.9 4.7 4.9 12.3.2 17zM372 428H12c-6.6 0-12 5.4-12 12v28c0 6.6 5.4 12 12 12h360c6.6 0 12-5.4 12-12v-28c0-6.6-5.4-12-12-12z"></path>
+            </svg>
             <div class="arrowContextMenu">Tiefster Punkt</div>
         </div>
         <p id="minHeight"> - m </p>
@@ -58,12 +70,11 @@
 
 <div id="list">
     <div id="listControl">
-        <button id="buttonBack" href="#"><</button>
-        <button id="buttonNext" href="#" onclick="">></button>
+        <button id="buttonBack"><</button>
+        <button id="buttonNext">></button>
         <p id="Pageindex"> PageID</p>
     </div>
     <ul id="listItemsContainer">
-
     </ul>
 </div>
 

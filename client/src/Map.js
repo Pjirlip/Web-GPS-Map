@@ -35,7 +35,7 @@ module.exports = class Map {
 			attribution: "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
 		});
 
-		var baseLayers = {
+		let baseLayers = {
 			"OSM Mapnik": osmMap,
 			"OSM DE": OpenStreetMapDE,
 			"Open Topo Map": OpenTopoMap,
