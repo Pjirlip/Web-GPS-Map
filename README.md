@@ -12,5 +12,6 @@ Gruppe 1:
 * Programmiersprache - Javascript
 * Betriebssystem - macOS Sierra
 * Verwendete Shell: iTerm2 (Bash)
-* Getestet mit folgenden Browsern: Google Chrome, Opera, Firefox und Safari (some little CSS problems in Safari)
-* Für die 'build:debug' configuration wird eine globale installtion vom NPM Package "Nodemon" benötigt.
+* Erfolgreich getestet mit folgenden Browsern: Google Chrome, Opera, Firefox, Safari (Version 11 Beta)
+* Volle Unterstüzung von mobilen Browsern. Getestet mit Firefox mobile, Chrome mobile und Safari mobile.
+* Für die 'start:debug' configuration wird eine globale installtion vom NPM Package "Nodemon" benötigt.
