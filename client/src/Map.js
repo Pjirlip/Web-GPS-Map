@@ -16,7 +16,7 @@ module.exports = class Map {
 		this.leaflet = require("leaflet");
 		this.map = this.leaflet.map("map").setView([49.76425, 6.64039], 13);
 		this.trackLayerGroup = new this.leaflet.LayerGroup();
-		let osmMap = this.leaflet.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+		let osmMap = this.leaflet.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
 			maxZoom: 19,
 			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 		}).addTo(this.map);
