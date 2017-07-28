@@ -66,14 +66,14 @@ module.exports = class Server {
 		errorObject.on("error", function (err) {
 			if (err.code === "EACCES") {
 				if (port <= 1024) {
-					console.log(`Error starting server with port: ${port}. permission needed to start server with port below 1024`);
+					console.error(`Error starting server with port: ${port}. permission needed to start server with port below 1024`);
 				}
 				else {
-					console.log(`Error starting server with port: ${port}. Port already in use`);
+					console.error(`Error starting server with port: ${port}. Port already in use`);
 				}
 			}
 			else {
-				console.log("Something went terrible wrong!");
+				console.error("Something went terrible wrong!");
 			}
 			process.exit(1);
 		});
