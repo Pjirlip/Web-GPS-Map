@@ -25,7 +25,8 @@
     "express": "^4.15.2",
     "jquery": "^3.2.1",
     "leaflet": "^1.0.3",
-    "leaflet.elevation": "0.0.3"
+    "leaflet.elevation": "0.0.3",
+    "simplify-js": "^1.2.1"
   },
   "devDependencies": {
     "babili": "0.0.12",

@@ -18,6 +18,7 @@
  * - the absolute traveled distance
  */
 let $ = require("jquery");
+var simplify = require("simplify-js");
 
 module.exports = class Elevation {
 	constructor(map) {
@@ -78,15 +79,23 @@ module.exports = class Elevation {
 			this.latLongNew = null;
 			this.distance = 0.0;
 			this.getSize();
+			this.pointsArray = [];
+			this.pointLastX = 0;
 			$.getJSON(trackURL, (data) => {
 				data.features[0].geometry.coordinates.forEach((coord) => {
-					this.heights.push(coord[2]);
+					if (this.latlongOld === null)		{
+						this.latlongOld = this.mymap.leaflet.latLng(coord[1], coord[0]);
+						this.pointsArray.push({ x: coord[2], y: this.distance });
+					}
+					else {
+						this.latLongNew = this.mymap.leaflet.latLng(coord[1], coord[0]);
+						this.distance += this.latlongOld.distanceTo(this.latLongNew);
+						this.latlongOld = this.latLongNew;
+						this.pointsArray.push({ x: coord[2], y: this.distance });
+					}
 					this.calcRaufRunter(coord[2]);
 					this.setMinMax(coord[2]);
-					this.calcDistance(coord[1], coord[0]);
-					this.maxPoints++;
 				});
-				this.maxPoints--;
 
 				this.markerGroup.clearLayers();
 				let start = this.mymap.leaflet.marker([data.features[0].geometry.coordinates[0][1], data.features[0].geometry.coordinates[0][0]], { icon: this.greenMarker }).bindPopup("Start of Track");
@@ -100,7 +109,9 @@ module.exports = class Elevation {
 
 		this.promise.then(() =>		{
 			this.selection = true;
-			this.drawPoints();
+			this.pointsArray = simplify(this.pointsArray, 5, true);
+			console.log(this.pointsArray);
+			this.drawPointArray();
 
 			$("#downHill").text(Math.ceil(this.meterRunter) + " m");
 			$("#upHill").text(Math.ceil(this.meterRauf) + " m");
@@ -120,6 +131,21 @@ module.exports = class Elevation {
 		this.heights.forEach(() => {
 			this.ctx.lineTo(point * this.canvas.width / this.maxPoints, this.calcHeight(this.heights[point]));
 			point++;
+		});
+
+		this.ctx.lineTo(this.canvas.width, this.canvas.height);
+		this.ctx.closePath();
+		this.ctx.fill();
+	}
+
+	// Draw the Point Array to the 2D Canvas
+	drawPointArray() {
+		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		this.ctx.beginPath();
+		this.ctx.moveTo(0, this.canvas.height);
+
+		this.pointsArray.forEach(point => {
+			this.ctx.lineTo(point.y * this.canvas.width / this.distance, this.calcHeight(point.x));
 		});
 
 		this.ctx.lineTo(this.canvas.width, this.canvas.height);
