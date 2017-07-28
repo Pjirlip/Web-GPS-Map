@@ -7,6 +7,13 @@
 
 @small-screen: ~"(max-width : 600px)";
 
+.hide
+{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   height: 100vh;
@@ -112,9 +119,7 @@ body {
           display: inline-block;
           margin: 0;
           padding: 0;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
+          .hide;
 
           @media @small-screen
           {
@@ -267,9 +272,7 @@ body {
       #trackName {
         padding-left: 10px;
         grid-area: trackname;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        .hide;
         max-width: calc(~"100% - 80px");
 
         @media @small-screen
@@ -282,9 +285,7 @@ body {
       #trackDistance {
         grid-area: trackdistance;
         justify-self: end;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        .hide;
 
       }
     }
@@ -398,9 +399,7 @@ body {
       p {
         padding: 0;
         margin: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        .hide;
       }
 
       #maxHIcon {
