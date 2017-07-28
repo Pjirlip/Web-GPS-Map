@@ -15,4 +15,5 @@ $(document).ready(()=>{
 	let myMap = new Map();
 	let elevation = new Elevation(myMap);
 	let tracklist = new TrackList(myMap, elevation);
+	myMap.invalidateSize();
 });
