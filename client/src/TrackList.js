@@ -39,14 +39,11 @@ module.exports = class TrackList {
 		this.prevButton.prop("disabled", true);
 
 		this.mobileMenu.click(() =>	{
-			console.log("Test");
 			if (this.trackInfoContainer.css("display") === "none")		{
-				console.log("grid");
 				this.trackInfoContainer.css("display", "grid");
 				this.update();
 			}
 			else			{
-				console.log("none");
 				this.trackInfoContainer.css("display", "none");
 			}
 		});
@@ -57,6 +54,9 @@ module.exports = class TrackList {
 		$(window).resize(() => {
 			if ($(window).width() >= 600)			{
 				this.trackInfoContainer.css("display", "grid");
+			}
+			else {
+				this.trackInfoContainer.css("display", "none");
 			}
 			this.update();
 		});
@@ -120,6 +120,9 @@ module.exports = class TrackList {
 				this.mymap.showTrackOnMap(this.tracksUrl + (i + 1));
 				this.activeItem = i;
 				this.elevation.draw(this.tracksUrl + (i + 1));
+				if ($(window).width() < 600)				{
+					this.trackInfoContainer.css("display", "none");
+				}
 			});
 			if (i === this.activeItem)			{
 				item.addClass("activeTrack"); //Add "active track" class again if function is invoked by window resize
