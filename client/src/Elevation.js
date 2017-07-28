@@ -122,23 +122,6 @@ module.exports = class Elevation {
 		});
 	}
 
-	//Draws complete Path with all point pnformations.
-	drawPoints()	{
-		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-		this.ctx.beginPath();
-		this.ctx.moveTo(0, this.canvas.height);
-
-		let point = 0.0;
-		this.heights.forEach(() => {
-			this.ctx.lineTo(point * this.canvas.width / this.maxPoints, this.calcHeight(this.heights[point]));
-			point++;
-		});
-
-		this.ctx.lineTo(this.canvas.width, this.canvas.height);
-		this.ctx.closePath();
-		this.ctx.fill();
-	}
-
 	// Draw the Point Array to the 2D Canvas
 	drawPointArray() {
 		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -184,27 +167,14 @@ module.exports = class Elevation {
 		}
 	}
 
-	//Function for calculating the traveled distance
-	calcDistance(lat, long)	{
-		if (this.latlongOld === null)		{
-			this.latlongOld = this.mymap.leaflet.latLng(lat, long);
-			this.latLongNew = this.mymap.leaflet.latLng(lat, long);
-		}
-		else			{
-			this.latLongNew = this.mymap.leaflet.latLng(lat, long);
-			this.distance = this.distance + this.latlongOld.distanceTo(this.latLongNew);
-			this.latlongOld = this.latLongNew;
-		}
-	}
-
 	//Get container size of the canvas element and set the size of the canvas itself
 	getSize()	{
 		let parent = $("#canvasContainer");
 		this.canvas.width = parent.width() * 2;
-		this.canvas.height = (parent.height() + 5) * 2;
+		this.canvas.height = (parent.height()) * 2;
 
 		if (this.selection !== false)		{
-			this.drawPoints();
+			this.drawPointArray();
 		}
 	}
 
