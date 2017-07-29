@@ -20,8 +20,6 @@ module.exports = class Server {
 
 		server.use(express.static("dist"));
 
-		const options = { dotfiles: "deny", headers: { "x-timestamp": Date.now(), "x-sent": true } };
-
         /**
          * save Port from Commandline argument 1 to variable port
          * @returns {Port from first Commandline argument or 8080 if argument is no valid port}

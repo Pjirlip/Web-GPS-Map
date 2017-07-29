@@ -1,13 +1,13 @@
 {
   "name": "webGPSmap",
-  "version": "0.0.2",
-  "description": "View GEOJSON fiels on Openstreetmap",
+  "version": "1.0.0",
+  "description": "View GEOJSON files on Openstreetmap",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint -c .eslintrc.json --ext .js ./",
-    "static": "cp client/src/index.html dist && cp -r client/assets/. dist",
+    "static": "cp client/src/index.html dist && cp -r client/assets/. dist && cp node_modules/leaflet/dist/leaflet.css dist",
     "static:min": "npm run static && place dist/index.html style.css style.min.css && place dist/index.html bundle.js bundle.min.js",
     "clean": "npm run clean:dist && rm -rf node_modules",
     "clean:dist": "rm -rf dist",
@@ -25,7 +25,6 @@
     "express": "^4.15.2",
     "jquery": "^3.2.1",
     "leaflet": "^1.0.3",
-    "leaflet.elevation": "0.0.3",
     "simplify-js": "^1.2.1"
   },
   "devDependencies": {
