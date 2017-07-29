@@ -68,23 +68,23 @@ module.exports = class Elevation {
 	 */
 	draw(trackURL, tolerance, minified)	{
 		this.promise = new Promise((resolve) => {
-			this.heights = [];
 			this.maxPoints = 0;
 			this.maxHeight = -99999;
 			this.minHeight = 99999;
 			this.lastheight = -99999;
 			this.meterRauf = 0;
 			this.meterRunter = 0;
+			this.latlongStart = null;
 			this.latlongOld = null;
 			this.latLongNew = null;
 			this.distance = 0.0;
 			this.getSize();
 			this.pointsArray = [];
-			this.pointLastX = 0;
 			$.getJSON(trackURL, (data) => {
 				data.features[0].geometry.coordinates.forEach((coord) => {
 					if (this.latlongOld === null)		{
 						this.latlongOld = this.mymap.leaflet.latLng(coord[1], coord[0]);
+						this.latlongStart = this.latlongOld;
 						this.pointsArray.push({ x: coord[2], y: this.distance });
 					}
 					else {
@@ -98,8 +98,9 @@ module.exports = class Elevation {
 				});
 
 				this.markerGroup.clearLayers();
-				let start = this.mymap.leaflet.marker([data.features[0].geometry.coordinates[0][1], data.features[0].geometry.coordinates[0][0]], { icon: this.greenMarker }).bindPopup("Start of Track");
-				let end = this.mymap.leaflet.marker([data.features[0].geometry.coordinates[this.maxPoints][1], data.features[0].geometry.coordinates[this.maxPoints][0]], { icon: this.redMarker }).bindPopup("End of Track");
+
+				let start = this.mymap.leaflet.marker(this.latlongStart, { icon: this.greenMarker }).bindPopup("Start of Track");
+				let end = this.mymap.leaflet.marker(this.latlongOld, { icon: this.redMarker }).bindPopup("End of Track");
 
 				this.markerGroup = this.mymap.leaflet.layerGroup([start, end]).addTo(this.mymap.map);
 
