@@ -1,3 +1,5 @@
+![Screenshot](https://raw.githubusercontent.com/Pjirlip/Web-GPS-Map/master/docu/Screenshot.png)
+
 # Hausarbeit für das Fach Webentwicklung SS2017
 
 Es handelt sich bei folgendem Code um eine Hausarbeit für das Modul Webentwicklung aus dem Sommersemester 2017.
