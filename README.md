@@ -17,7 +17,7 @@ Aufgabenstellung war ein Node.js Webserver und Client zur Anzeige von GPS Karten
 * Volle Unterstüzung von mobilen Browsern. Getestet mit Firefox mobile, Chrome mobile und Safari mobile.
 * Für die 'start:debug' configuration wird eine globale installtion vom NPM Package "Nodemon" benötigt.
 
-##Anleitung
+## Anleitung
 * Das Projekt auf den eigenen Rechner klonen
 * Ein Terminal öffnen, zum geklonten Verzeichnis navigieren und "npm run build" eingeben. (Benötigt eine installation von Node.JS und NPM)
 * Wenn das Projekt fertig gebaut worden ist "npm run start" eingeben. Der Server läuft nun im Hintergrund. 
