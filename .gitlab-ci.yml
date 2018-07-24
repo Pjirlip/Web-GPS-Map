@@ -1,0 +1,23 @@
+before_script:
+- npm install
+
+cache:
+  paths:
+  - node_modules/
+
+  test:lint:
+    script:
+    - npm run lint
+
+  test:vulnerabilities:
+    script:
+    - npm run vuln-test
+
+publish:
+  stage: deploy
+  only:
+    - tags
+    - triggers
+  script:
+    - npm run build
+    - npm run start
